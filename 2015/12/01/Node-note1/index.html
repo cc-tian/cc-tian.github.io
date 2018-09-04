@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Node-notes1 - Kikyouc的博客 | Kikyouc&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2015/12/01/Node-note1/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kikyouc&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-kikyou.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                        
+                          <a class="tag" href="/tags/#node" title="node">node</a>
+                        
+                    </div>
+                    <h1>Node-notes1</h1>
+                    <h2 class="subheading">node学习笔记整理</h2>
+                    <span class="meta">
+                        Posted by cc-tian on
+                        2015-12-01
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>Node.js是一个基于V8引擎的Javascript运行环境<br>允许在后端（脱离浏览器环境）运行JavaScript代码。</p>
+</blockquote>
+<h5 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h5><ul>
+<li>npm：NodeJs包管理器</li>
+<li><a href="http://expressjs.com/" target="_blank" rel="noopener">express</a>：服务器端比较流行的MVC框架，处理服务请求，路由转发，逻辑处理</li>
+<li>mongoose：mongodb包装，更方便使用数据库</li>
+<li><a href="http://socket.io/" target="_blank" rel="noopener">socket.io</a>：实现服务端和客户端socket通信解决方案</li>
+<li>backbone：客户端MVC框架，编写客户端应用（豆瓣说）</li>
+<li>coffeescript：提高JavaScript的可读性，健壮性</li>
+<li>zombie：浏览器子集，编写html解析器，轻形javascript客户端测试</li>
+</ul>
+<p>特点：单线程，非阻塞I/O，跨平台，JavaScript，轻量</p>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><pre><code>事件机制 高并发 --&gt;同一时间请求数量很多
+异步I/O --&gt;通过回调函数形式完成，避免同步的等待
+</code></pre><h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><pre><code>单线程 --&gt;没有充分地利用CPU的性能
+稳定性 --&gt;一处出错，程序就崩溃
+</code></pre><p>适用场景： I/O密集型，分布式应用<br>不适用场景： 计算密集型，逻辑十分复杂的事务，Unicode和国际化</p>
+<hr>
+<p>NodeJS 使用 <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="noopener">CommonJS</a> 模块系统，主模块作为程序入口点，所有模块在执行过程中只初始化一次,并在执行过程中初始化模块的导出对象。之后，缓存起来的导出对象被重复利用。</p>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p>在NodeJS中，每一个文件就是一个模块，而文件路径就是模块名。<br>在编写每个模块时，都有require、exports、module三个预先定义好的变量可供使用。</p>
+<h4 id="require"><a href="#require" class="headerlink" title="require"></a>require</h4><p>require函数用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名中的.js扩展名可以省略。以下是一个例子。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//js模块</span></span><br><span class="line"><span class="keyword">var</span> foo1 = <span class="built_in">require</span>(<span class="string">'./foo.js'</span>);</span><br><span class="line"><span class="keyword">var</span> foo2 = <span class="built_in">require</span>(<span class="string">'/home/user/foo'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// foo1与foo2中保存的是同一个模块的导出对象。</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//json模块---&gt;用来配置项目依赖关系</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">require</span>(<span class="string">'./data.json'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以使用以上方式加载和使用一个JSON文件</span></span><br></pre></td></tr></table></figure>
+<h4 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h4><p>exports对象是当前模块的导出对象，用于导出模块公有方法和属性。别的模块通过require函数使用当前模块时得到的就是当前模块的exports对象。以下例子在exports对象导出了一个公有方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line">exports.add=add;</span><br></pre></td></tr></table></figure></p>
+<p><em>node的模块输出变量的两种模式：</em></p>
+<p>//—– module.exports = …<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    keyA: valueA,</span><br><span class="line">    keyB: valueB</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 利用module.exports来输出一个对象</span></span><br><span class="line"><span class="comment">// require方法将moduleA暴露对象赋值给moduleB的obj对象</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="built_in">require</span>(moduleA);</span><br></pre></td></tr></table></figure></p>
+<p>//—– exports 对象<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exports.keyA = vauleA;</span><br><span class="line">exports.keyB = vauleB;</span><br><span class="line"><span class="comment">//直接对 exports 对象规定属性</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="module"><a href="#module" class="headerlink" title="module"></a>module</h4><p>通过module对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通对象，如果想改成一个函数的话，可以使用以下方式。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="built_in">module</span>.exports = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> exports = <span class="built_in">module</span>.exports;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports=add;</span><br><span class="line"></span><br><span class="line"><span class="comment">//以上代码中，模块默认导出对象被替换为一个函数。</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="二进制模块"><a href="#二进制模块" class="headerlink" title="二进制模块"></a>二进制模块</h4><p>NodeJS也支持使用C/C++编写二进制模块。编译好的二进制模块除了文件扩展名是.node外，和JS模块的使用方式相同。除非JS模块不能满足需求，否则不要轻易使用二进制模块。</p>
+<h3 id="require常用方法"><a href="#require常用方法" class="headerlink" title="require常用方法"></a>require常用方法</h3><h4 id="1-内置模块（核心模块）"><a href="#1-内置模块（核心模块）" class="headerlink" title="1. 内置模块（核心模块）"></a>1. 内置模块（核心模块）</h4><p>如果传递给require函数的是NodeJS内置模块名称，不做路径解析，直接返回内部模块的导出对象，例如:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http= <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">var</span> fs= <span class="built_in">require</span>(<span class="string">'fs'</span>);<span class="comment">//文件系统操作</span></span><br><span class="line"><span class="keyword">var</span> url= <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-文件模块"><a href="#2-文件模块" class="headerlink" title="2. 文件模块"></a>2. 文件模块</h4><ul>
+<li><p>绝对路径( 获取自定义模块 )<br>模块以 <code>/</code> 开头表示使用文件的绝对路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">'/home/marco/foo.js'</span>) 将加载/home/marco/foo.js 文件。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>相对路径<br>模块以 <code>./</code> 开头表示调用 require() 时使用相对路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">'./server'</span>)<span class="comment">//  “./”表示当前路径，后面跟的是相对路径</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">"../lib/server"</span>)<span class="comment">// “../”表示上一级目录，后面跟的也是相对路径</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3-从-node-modules-中加载"><a href="#3-从-node-modules-中加载" class="headerlink" title="3. 从 node_modules 中加载"></a>3. 从 node_modules 中加载</h4><p>如果不以 <code>/</code> 或 <code>./</code> 开头，该模块可以是一个<code>核心模块</code>，也可以是一个从 <code>node_modules</code> 文件夹中加载的模块。</p>
+<p>它将找到最近的<code>node_modules</code>文件夹，取出模块。（效率最低，因为要一个一个去遍历）</p>
+<p><em>node_modules目录</em></p>
+<p>NodeJS 定义了一个特殊的node_modules目录用于存放模块。例如某个模块的绝对路径是<code>/home/user/hello.js</code>，在该模块中使用<code>require(&#39;foo/bar&#39;)</code>方式加载模块时，则NodeJS依次尝试使用以下路径。</p>
+<pre><code>/home/user/node_modules/foo/bar
+/home/node_modules/foo/bar
+/node_modules/foo/bar
+</code></pre><h4 id="4-从-require-paths-中加载"><a href="#4-从-require-paths-中加载" class="headerlink" title="4. 从 require.paths 中加载"></a>4. 从 require.paths 中加载</h4><p>在 Node 中，require.paths 是一个字符串数组，表示模块不以 <code>/</code> <code>./</code> 或 <code>..</code> 打头的搜索路径。例如，如果 require.paths 设置为：</p>
+<pre><code>[ &apos;/home/micheil/.node_modules&apos;,
+&apos;/usr/local/lib/node_modules&apos; ]
+</code></pre><p>则调用 <code>require(&#39;bar/baz.js&#39;)</code> 会搜索以下位置：</p>
+<pre><code>1： &apos;/home/micheil/.node_modules/bar/baz.js&apos;
+2： &apos;/usr/local/lib/node_modules/bar/baz.js&apos;
+</code></pre><p>可以在运行时修改 <code>require.paths</code> 数组来改变这种行为。</p>
+<p>它的值最初从 <code>NODE_PATH</code>环境变量而来，那是一个冒号分隔的绝对路径列表。在前面的例子中，NODE_PATH 环境变量可能被设置为：</p>
+<pre><code>/home/micheil/.node_modules:/usr/local/lib/node_modules
+</code></pre><p>只有使用上面的 <code>node_modules</code> 算法找不到模块时才会尝试 <code>require.paths</code>。全局模块的优先级低于捆绑依赖。</p>
+<p><strong>注意</strong> 请不要修改 <code>require.paths</code></p>
+<p><em>NODE_PATH环境变量</em></p>
+<p>与PATH环境变量类似，NodeJS允许通过NODE_PATH环境变量来指定额外的模块搜索路径。NODE_PATH环境变量中包含一到多个目录路径，路径之间在Linux下使用<code>:</code>分隔，在Windows下使用<code>;</code>分隔。例如定义了以下NODE_PATH环境变量：</p>
+<pre><code>NODE_PATH=/home/user/lib:/home/lib
+</code></pre><p>当使用require(‘foo/bar’)的方式加载模块时，则NodeJS依次尝试以下路径。</p>
+<pre><code>/home/user/lib/foo/bar
+/home/lib/foo/bar
+</code></pre><h2 id="包（package）"><a href="#包（package）" class="headerlink" title="包（package）"></a>包（package）</h2><p>我们把由多个子模块组成的大模块称做包，并把所有子模块放在同一个目录里。<br>在组成一个包的所有子模块中，需要有一个入口模块，入口模块的导出对象被作为包的导出对象。例如有以下目录结构。</p>
+<pre><code>- /home/user/lib/
+    - cat/
+        head.js
+        body.js
+        main.js
+</code></pre><p>其中cat目录定义了一个包，其中包含了3个子模块。main.js作为入口模块,其内容如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> head = <span class="built_in">require</span>(<span class="string">'./head'</span>);</span><br><span class="line"><span class="keyword">var</span> body = <span class="built_in">require</span>(<span class="string">'./body'</span>);</span><br><span class="line"></span><br><span class="line">exports.create = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name: name,</span><br><span class="line">        head: head.create(),</span><br><span class="line">        body: body.create()</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>在其它模块里使用包的时候，需要加载包的入口模块。接着上例，使用<code>require(&#39;/home/user/lib/cat/main&#39;)</code>能达到目的，但是入口模块名称出现在路径里看上去不是个好主意。因此我们需要做点额外的工作，让包使用起来更像是单个模块。</p>
+<p><em>index.js</em></p>
+<p>当模块的文件名是index.js，加载模块时可以使用模块所在目录的路径代替模块文件路径，因此接着上例，以下两条语句等价。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cat = <span class="built_in">require</span>(<span class="string">'/home/user/lib/cat'</span>);</span><br><span class="line"><span class="keyword">var</span> cat = <span class="built_in">require</span>(<span class="string">'/home/user/lib/cat/index'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这样处理后，就只需要把包目录路径传递给require函数，感觉上整个目录被当作单个模块使用，更有整体感。</p>
+<p><em>package.json</em></p>
+<p>如果想自定义入口模块的文件名和存放位置，就需要在包目录下包含一个package.json文件，并在其中指定入口模块的路径。上例中的cat模块可以重构如下。</p>
+<pre><code>- /home/user/lib/
+    - cat/
+        + doc/
+        - lib/
+            head.js
+            body.js
+            main.js
+        + tests/
+        package.json
+</code></pre><p>package.json内容如下:</p>
+<pre><code>{
+    &quot;name&quot;: &quot;cat&quot;,
+    &quot;main&quot;: &quot;./lib/main.js&quot;
+}
+</code></pre><p>如此一来，就同样可以使用<code>require(&#39;/home/user/lib/cat&#39;)</code>的方式加载模块。NodeJS会根据包目录下的package.json找到入口模块所在位置。</p>
+<h2 id="Npm（Node-js-Package-Manager-）"><a href="#Npm（Node-js-Package-Manager-）" class="headerlink" title="Npm（Node.js Package Manager ）"></a><a href="https://www.npmjs.com/" target="_blank" rel="noopener">Npm</a>（Node.js Package Manager ）</h2><ol>
+<li><p><code>npm init</code><br>初始化当前的包，其实就是帮你建一个package.json</p>
+</li>
+<li><p><code>npm install xxxx</code><br>安装某个包到当前项目中，其实就是在Npm上把这个包下载到node_modules里面。<br><code>--save</code> 如果有这个标签，则在package.json里添加依赖项</p>
+</li>
+<li><code>npm install xxxx -g</code><br>下载一个包，作为一个全局模块，可以当做CLI使用</li>
+</ol>
+<h2 id="异步I-O和同步"><a href="#异步I-O和同步" class="headerlink" title="异步I/O和同步"></a>异步I/O和同步</h2><p>I/O（input/output）,是指CPU与外部设备、存储器的连接和数据交换</p>
+<h3 id="常见的I-O模型"><a href="#常见的I-O模型" class="headerlink" title="常见的I/O模型"></a>常见的I/O模型</h3><ol>
+<li><strong>阻塞式I/O模型</strong><br>默认情况下，所有套接字都是阻塞的。怎么理解？先理解这么个流程，一个输入操作通常包括两个不同阶段：（1）等待数据准备好；（2）从内核向进程复制数据。对于一个套接字上的输入操作，第一步通常涉及等待数据从网络中到达。当所有等待分组到达时，它被复制到内核中的某个缓冲区。第二步就是把数据从内核缓冲区复制到应用程序缓冲区。 好，下面我们以阻塞套接字的recvfrom的的调用图来说明阻塞<br><img src="https://pic2.zhimg.com/e83d68da03da2e8c1568b4b4b630edfd_r.jpg" alt="阻塞I/O"></li>
+</ol>
+<p>标红的这部分过程就是阻塞，直到阻塞结束recvfrom才能返回。</p>
+<ol start="2">
+<li><strong>非阻塞式I/O模型</strong><br>进程把一个套接字设置成非阻塞是在通知内核，当所请求的I/O操作非得把本进程投入睡眠才能完成时，不要把进程投入睡眠，而是返回一个错误。看看非阻塞的套接字的recvfrom操作如何进行<br><img src="https://pic1.zhimg.com/4bc31cab27a9a732ab7d1ba9e674ed64_b.jpg" alt="非阻塞式I/O模型"><br>可以看出recvfrom总是立即返回。</li>
+<li><strong>I/O复用(select,poll)</strong><br>虽然I/O多路复用的函数也是阻塞的，但是其与以上两种还是有不同的，I/O多路复用是阻塞在select，epoll这样的系统调用之上，而没有阻塞在真正的I/O系统调用如recvfrom之上。如图<br><img src="https://pic1.zhimg.com/b1ec6a4f16844a27c175d5a6a94cd7f8_b.jpg" alt="I/O复用"></li>
+<li><strong>异步I/O</strong><br>这类函数的工作机制是告知内核启动某个操作，并让内核在整个操作（包括将数据从内核拷贝到用户空间）完成后通知我们。如图：<br><img src="https://pic2.zhimg.com/5819fd0fdff2bd4fdc9652291aca1831_b.jpg" alt="异步I/O"><br>注意红线标记处说明在调用时就可以立马返回，等函数操作完成会通知我们。</li>
+</ol>
+<p><strong>同步I/O操作</strong>：导致请求进程阻塞，直到I/O操作完成；<br><strong>异步I/O操作</strong>：不导致请求进程阻塞。</p>
+<p><strong>阻塞，非阻塞</strong>：进程/线程要访问的数据是否就绪，进程/线程是否需要等待；<br><strong>同步，异步</strong>：访问数据的方式，同步需要主动读写数据，在读写数据的过程中还是会阻塞；异步只需要I/O操作完成的通知，并不主动读写数据，由操作系统内核完成数据的读写。</p>
+<h2 id="Event模块"><a href="#Event模块" class="headerlink" title="Event模块"></a>Event模块</h2><p><em>event.js</em><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>);</span><br><span class="line"><span class="keyword">var</span> emitter = <span class="keyword">new</span> EventEmitter();</span><br><span class="line"></span><br><span class="line">emitter.on(<span class="string">'event'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'an event occurred!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">emitter.emit(<span class="string">'event'</span>);</span><br></pre></td></tr></table></figure></p>
+<p><em>inherit.js</em><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>);</span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个EventEmitter的子类</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyEmitter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  EventEmitter.call(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line">util.inherits(MyEmitter, EventEmitter);</span><br><span class="line"></span><br><span class="line"><span class="comment">//myEmitter创建的实例都有EventEmitter的属性</span></span><br><span class="line"><span class="keyword">var</span> myEmitter = <span class="keyword">new</span> MyEmitter();</span><br><span class="line">myEmitter.on(<span class="string">'event'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'an event occurred!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">myEmitter.emit(<span class="string">'event'</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="Buffer模块"><a href="#Buffer模块" class="headerlink" title="Buffer模块"></a>Buffer模块</h2><p>Buffer其实就是一个数组，每一个数组元素就是一个字节。</p>
+<p><strong>运用</strong>：</p>
+<ol>
+<li>处理二进制数据</li>
+<li>解决node内存不足的问题</li>
+</ol>
+<h3 id="Buffer底层机制"><a href="#Buffer底层机制" class="headerlink" title="Buffer底层机制"></a>Buffer底层机制</h3><ol>
+<li>buffer不是分配在V8的堆内存中的Node的堆内存中的，而是调用C++层面的内存申请。</li>
+<li>为了高效实用内存，Node采用slab分配机制。<br><em>slab分配机制</em><br>其实就是事先申请固定大小的内存，为了避免频繁<br>申请内存，浪费性能</li>
+</ol>
+<h3 id="Class-Buffer"><a href="#Class-Buffer" class="headerlink" title="Class: Buffer"></a>Class: Buffer</h3><p>1.new Buffer(array)<br>2.new Buffer(buffer)<br>3.new Buffer(size)<br>4.new Buffer(str[, encoding])<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="number">160</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> buf1 = <span class="keyword">new</span> Buffer(arr);</span><br><span class="line"><span class="keyword">var</span> buf2 = <span class="keyword">new</span> Buffer(buf1);</span><br><span class="line"><span class="keyword">var</span> buf3 = <span class="keyword">new</span> Buffer(<span class="number">4</span>);</span><br><span class="line"><span class="keyword">var</span> buf4 = <span class="keyword">new</span> Buffer(<span class="string">'abcac'</span>,<span class="string">'utf-8'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化buf3，每个元素都赋0</span></span><br><span class="line">buf3.fill(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(buf4.indexOf(<span class="string">'ca'</span>));</span><br></pre></td></tr></table></figure></p>
+<h2 id="构建Web应用"><a href="#构建Web应用" class="headerlink" title="构建Web应用"></a>构建Web应用</h2><h3 id="网络协议"><a href="#网络协议" class="headerlink" title="网络协议"></a>网络协议</h3><p><strong>五层模型</strong><br>越下面的层，越靠近硬件；越上面的层，越靠近用户。<br><img src="http://image.beekka.com/blog/201205/bg2012052902.png" alt="五层模型"></p>
+<ul>
+<li>IP协议：规定网络地址的协议</li>
+<li>TCP协议：传输控制协议（英语：Transmission Control Protocol, TCP）<br>是一种面向连接的、可靠的、基于字节流的<em>传输层通信协议</em></li>
+</ul>
+<h3 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h3><p>TCP建立连接时，会有三次握手过程。</p>
+<p><img src="http://www.seanyxie.com/wp-content/uploads/2014/04/20140410074734_35455.jpg" alt="TCP三次握手"></p>
+<ul>
+<li><strong>第一次握手</strong>：客户端向服务器发送连接请求包，标志位SYN（同步序号）置为1，序号Seq为X（随机数）。</li>
+<li><strong>第二次握手</strong>：服务器收到客户端发来报文，由SYN=1得知客户端要求建立联机。向客户端发送一个SYN与ACK都置1的TCP报文，设置初始序号Seq为另一随机数Y，将确认序号ack(Acknowledgement Number)设置为客户的序列号加1，即ack=X+1。</li>
+<li><p><strong>第三次握手</strong>：客户端收到服务器发来的包后检查确认序号ack是否正确，即第一次发送的序号加1（X+1），以及标志位ACK是否为1。若正确，客户端再次向服务器发送确认包，ACK标志位为1，SYN标志位为0。确认序号ack=Y+1，发送序号为X+1。服务器收到后确认序号值与ACK=1则连接建立成功，可以传送数据了。</p>
+<p>###TCP四次挥手<br>TCP断开连接时，会有四次挥手过程。</p>
+</li>
+</ul>
+<p><img src="http://www.seanyxie.com/wp-content/uploads/2014/04/20140410074742_90411.jpg" alt="TCP四次挥手"></p>
+<ul>
+<li><strong>第一次挥手</strong>：客户端给服务器发送TCP包，用来关闭客户端到服务器的数据传送。将标志位FIN和ACK置为1，序号Seq为随机数X，确认序号ack为Z。</li>
+<li><strong>第二次挥手</strong>：服务器收到FIN后，发回一个ACK(标志位ACK=1),确认序号ack为收到的序号加1，即ack=X+1。序号Seq为收到的确认序号Z。</li>
+<li><strong>第三次挥手</strong>：服务器关闭与客户端的连接，发送一个FIN。标志位FIN和ACK置为1，序号Seq为随机数Y，确认序号ack=X+1。</li>
+<li><strong>第四次挥手</strong>：客户端收到服务器发送的FIN之后，发回ACK确认(标志位ACK=1),确认序号ack为收到的序号加1，即ack=Y+1。序号Seq为收到的确认序号，即Seq=X+1。</li>
+</ul>
+<h4 id="问题1-为什么需要“三次握手”"><a href="#问题1-为什么需要“三次握手”" class="headerlink" title="问题1.为什么需要“三次握手”"></a>问题1.为什么需要“三次握手”</h4><p> 在谢希仁著《计算机网络》第四版中讲“三次握手”的目的是“<strong>为了防止已失效的连接请求报文段突然又传送到了服务端，因而产生错误</strong>”。在另一部经典的《计算机网络》一书中讲“三次握手”的目的是为了解决“网络中存在延迟的重复分组”的问题。这两种不用的表述其实阐明的是同一个问题。</p>
+<p>谢希仁版《计算机网络》中的例子是这样的，“已失效的连接请求报文段”的产生在这样一种情况下：client发出的第一个连接请求报文段并没有丢失，而是在某个网络结点长时间的滞留了，以致延误到连接释放以后的某个时间才到达server。<strong>本来这是一个早已失效的报文段。但server收到此失效的连接请求报文段后，就误认为是client再次发出的一个新的连接请求。于是就向client发出确认报文段，同意建立连接。假设不采用“三次握手”，那么只要server发出确认，新的连接就建立了。由于现在client并没有发出建立连接的请求，因此不会理睬server的确认，也不会向server发送数据。但server却以为新的运输连接已经建立，并一直等待client发来数据。这样，server的很多资源就白白浪费掉了</strong>。采用“三次握手”的办法可以防止上述现象发生。例如刚才那种情况，client不会向server的确认发出确认。server由于收不到确认，就知道client并没有要求建立连接。”。<strong>主要目的防止server端一直等待，浪费资源。</strong></p>
+<h4 id="问题2-为什么连接的时候是三次握手，关闭的时候却是四次握手？"><a href="#问题2-为什么连接的时候是三次握手，关闭的时候却是四次握手？" class="headerlink" title="问题2.为什么连接的时候是三次握手，关闭的时候却是四次握手？"></a>问题2.为什么连接的时候是三次握手，关闭的时候却是四次握手？</h4><p>答：因为当Server端收到Client端的SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当Server端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，”你发的FIN报文我收到了”。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。</p>
+<h3 id="TCP数据传输"><a href="#TCP数据传输" class="headerlink" title="TCP数据传输"></a>TCP数据传输</h3><p><a href="http://www.kaikaimao.net/mao.php?u=85VpjbgkrryV1CT3ubGWtS%2bDTL3FkD9qb9BFOU2fvrq8PMjNTlqPRwgJV0YsHfOCa6yR8I9pLjKo2v/oU/%2bjb7iSzcRBFRnqv5yNc0tRhJw=&amp;b=7" target="_blank" rel="noopener">TCP数据传输</a>（注：来自维基百科）</p>
+<ol>
+<li>发送方首先发送第一个包含序列号为1（可变化）和1460字节数据的TCP报文段给接收方。接收方以一个没有数据的TCP报文段来回复（只含报头），用确认号1461来表示已完全收到并请求下一个报文段。</li>
+<li>发送方然后发送第二个包含序列号为1461和1460字节数据的TCP报文段给接收方。正常情况下，接收方以一个没有数据的TCP报文段来回复，用确认号2921（1461+1460）来表示已完全收到并请求下一个报文段。发送接收这样继续下去。</li>
+<li>然而当这些数据包都是相连的情况下，接收方没有必要每一次都回应。比如，他收到第1到5条TCP报文段，只需回应第五条就行了。在例子中第3条TCP报文段被丢失了，所以尽管他收到了第4和5条，然而他只能回应第2条。</li>
+<li>发送方在发送了第三条以后，没能收到回应，因此当时钟（timer）过时（expire）时，他重发第三条。（每次发送者发送一条TCP报文段后，都会再次启动一次时钟：RTT）。</li>
+<li>这次第三条被成功接收，接收方可以直接确认第5条，因为4，5两条已收到。</li>
+</ol>
+<hr>
+<h2 id="我的学习资料"><a href="#我的学习资料" class="headerlink" title="我的学习资料"></a>我的学习资料</h2><h4 id="基础："><a href="#基础：" class="headerlink" title="基础："></a>基础：</h4><p><a href="http://www.nodebeginner.org/index-zh-cn.html" target="_blank" rel="noopener">Node 入门书</a> 与 <a href="https://github.com/highsea/cnblog/blob/master/nodeJS%20%E7%AC%94%E8%AE%B0.md" target="_blank" rel="noopener">入门书配套的笔记</a><br><a href="http://nqdeng.github.io/7-days-nodejs/" target="_blank" rel="noopener">七天学会NodeJS</a><br><a href="https://nodejs.org/dist/latest-v4.x/docs/api/" target="_blank" rel="noopener">Node.js官方文档</a><br><a href="http://blog.csdn.net/gexiuhua/article/category/1641719" target="_blank" rel="noopener">葛家小蔡的博客</a><br><a href="http://blog.fens.me/series-nodejs/" target="_blank" rel="noopener">从零开始nodejs系列文章</a><br><a href="https://www.zybuluo.com/yangfch3/note/160896" target="_blank" rel="noopener">作业部落node.js基础</a>、<a href="http://blog.csdn.net/historyasamirror/article/details/5778378" target="_blank" rel="noopener">IO - 同步，异步，阻塞，非阻塞</a><br><a href="https://www.ibm.com/developerworks/cn/linux/l-async/" target="_blank" rel="noopener">使用异步 I/O 提高应用程序的性能</a><br><a href="http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html" target="_blank" rel="noopener">阮一峰互联网协议入门</a></p>
+<h4 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h4><p><a href="https://github.com/alsotang/node-lessons" target="_blank" rel="noopener">Node.js 开源课程</a><br><a href="http://www.ibm.com/developerworks/cn/" target="_blank" rel="noopener">IBM developerWorks</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/06/04/手头10W，该如何理财？/" data-toggle="tooltip" data-placement="top" title="手头10W，该如何理财？">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2015/11/18/hexo博客的搭建/" data-toggle="tooltip" data-placement="top" title="hexo博客的搭建">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                        
+                          <a class="tag" href="/tags/#node" title="node">node</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "kikyouc";
+    var disqus_identifier = "http://yoursite.com/2015/12/01/Node-note1/";
+    var disqus_url = "http://yoursite.com/2015/12/01/Node-note1/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/chen-tian-92-4">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/cc-tian">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kikyouc&#39;s Blog 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

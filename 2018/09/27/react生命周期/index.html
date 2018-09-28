@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          react生命周期 - Kikyouc的博客 | Kikyouc&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2018/09/27/react生命周期/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kikyouc&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-kikyou.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                        
+                    </div>
+                    <h1>react生命周期</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by cc-tian on
+                        2018-09-27
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p><img src="https://user-gold-cdn.xitu.io/2017/11/11/88e11709488aeea3f9c6595ee4083bf3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="生命周期图"></p>
+<h3 id="一、初始化阶段"><a href="#一、初始化阶段" class="headerlink" title="一、初始化阶段"></a>一、初始化阶段</h3><ol>
+<li><p>设置组件的默认属性</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> defaultProps = &#123;</span><br><span class="line"><span class="symbol">    name:</span> <span class="string">'sls'</span>,</span><br><span class="line"><span class="symbol">    age:</span><span class="number">23</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//or</span></span><br><span class="line">Counter.defaltProps=&#123;<span class="string">name:</span><span class="string">'sls'</span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>constructor()：构造函数</p>
+<ul>
+<li>通常在此函数进行初始化state或者绑定成员函数的this环境</li>
+<li>若不在此函数中进行this绑定操作,也可使用箭头函数来实现函数定义</li>
+<li>在此函数实现服务器数据拉取的方案：先在constructor中通过promise进行数据拉取，并绑定到this对象上，然后在componentDidMount中执行promise把数据更新到props上</li>
+</ul>
+</li>
+<li>componentWillMount(): 预装载函数<ul>
+<li>此函数会在组件render之前执行，并且永远都只执行一次</li>
+<li>若在此函数中定义了setState方法，页面永远都只会在加载前更新一次</li>
+</ul>
+</li>
+<li>render()：渲染函数<ul>
+<li>react中唯一不可省略的函数</li>
+<li>此函数仅用于渲染，返回值完全取决于this.state和this.props，不能在函数中执行任何修改props、state、拉取数据等具有副作用的操作</li>
+<li>通过返回null或false实现不渲染DOM元素</li>
+<li>此函数仅返回JSX对象，并不会立即挂载到DOM树上，由React库决定何时进行真实的DOM渲染</li>
+</ul>
+</li>
+<li>componentDidMount()：挂载成功函数<ul>
+<li>该函数会在组件被渲染到DOM树之后被调用，在此处可通过this.getDOMNode()来访问对应的DOM结构</li>
+<li>该函数在进行服务器端渲染时不会被调用</li>
+<li>通常用于服务器数据的拉取操作，不在constructor中进行数据拉取的原因在于，在组件渲染之前props获得拉取得的数据会报错<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">componentDidMount</span>() &#123; </span><br><span class="line">    <span class="selector-tag">setTimeout</span>(() =&gt; &#123; </span><br><span class="line">        <span class="selector-tag">this</span><span class="selector-class">.setState</span>(&#123;<span class="attribute">items</span>: &#123;<span class="attribute">name</span>: <span class="string">'test'</span>&#125;&#125;) </span><br><span class="line">    &#125;, <span class="selector-tag">1000</span>) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="二、运行中阶段"><a href="#二、运行中阶段" class="headerlink" title="二、运行中阶段"></a>二、运行中阶段</h3><p>当组件挂载到DOM树上之后，props/state被修改会导致组件进行更新操作，更新过程会以此调用如下的生命周期函数：</p>
+<ol>
+<li><p>componentWillReceiveProps(nextProps)：</p>
+<ul>
+<li>组件接收到属性(新的prop)时触发</li>
+<li>常用于根据前后两个数据去设置组件的状态</li>
+<li>该函数在组件进行更新以及父组件render函数（不管数据是否发生了改变）被调用后执行，this.props取得当前的props，nextProps传入的是要更新的props<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">    <span class="attribute">this.setState(&#123; </span></span><br><span class="line"><span class="attribute">        creasing</span>: nextProps<span class="variable">.count</span> &gt; this<span class="variable">.props</span><span class="variable">.count</span> </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>shouldComponentUpdate(nextProps, nextState)：</p>
+<ul>
+<li>当组件接收到新属性，或者组件的状态发生改变时触发，组件首次渲染时并不会触发</li>
+<li>通过返回bool值可以控制组件是否需要更新，常用于提高React组件的性能，避免不需要的渲染<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(<span class="keyword">new</span><span class="type">Props</span>, <span class="keyword">new</span><span class="type">State</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">new</span><span class="type">Props</span>.number &lt; <span class="number">5</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//该钩子函数可以接收到两个参数，新的属性和状态</span></span><br><span class="line"><span class="comment">//如返回false, render()则会在下一个state change之前被完全跳过,</span></span><br><span class="line"><span class="comment">//且componentWillUpdate和 componentDidUpdate也不会被执行。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>一般我们通过该函数来优化性能：<br>    一个React项目需要更新一个小组件时，很可能需要父组件更新自己的状态。而一个父组件的重新更新会造成它下面所有的子组件重新执行render()方法，形成新的虚拟DOM，再用diff算法对新旧虚拟DOM进行结构和属性的比较，决定组件是否需要重新渲染<br>    无疑这样的操作会造成很多的性能浪费，所以我们开发者可以根据项目的业务逻辑，在shouldComponentUpdate()中加入条件判断，从而优化性能</p>
+</blockquote>
+<ol start="3">
+<li>componentWillUpdate(nextProps, nextState)：预更新函数<ul>
+<li>在组件接收到新的props或者state但还没有render时被执行</li>
+<li>组件发生更新之前触发</li>
+</ul>
+</li>
+<li>componentDidUpdate(prevProps, prevState)：更新完成函数<ul>
+<li>初始化时不会被执行,组件被更新完成后触发</li>
+<li>页面中产生了新的DOM的元素，可以进行DOM操作</li>
+</ul>
+</li>
+</ol>
+<h3 id="三、销毁阶段"><a href="#三、销毁阶段" class="headerlink" title="三、销毁阶段"></a>三、销毁阶段</h3><ol>
+<li>componentWillUnmount()<ul>
+<li>当React组件要从DOM树上删除前，会调用一次这个函数</li>
+<li>组件被销毁时触发。这里我们可以进行一些清理操作，例如清除定时器，取消Redux的订阅事件等等。</li>
+<li>常用于去除componentDidMount函数带来的副作用，例如删除componentDidMount中创造的非React元素等。<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount()&#123; </span><br><span class="line">   <span class="keyword">this</span>.inc = setInterval(<span class="keyword">this</span>.update, <span class="number">500</span>); </span><br><span class="line">&#125;, </span><br><span class="line">componentWillUnmount()&#123; </span><br><span class="line">   clearInterval(<span class="keyword">this</span>.inc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h3><p>在React中，只能通过<code>this.setState()</code>来修改state，不能使用<code>this.state.val=&#39;123&#39;</code>等方式，一是不会驱动重新渲染，二是很可能被后面的操作替换，造成无法预知的错误。<br>此外，React利用状态队列来实现setState的异步更新，避免频繁地重复更新state。</p>
+<ul>
+<li>state的初始化一般在构造函数中实现；</li>
+<li>setState可以在初始化阶段的componentWillMount、componentDidMount中调用；</li>
+<li>setState可以在更新过程中的componentWillReceiveProps、componentDidUpdate中调用；</li>
+<li>setState的调用是有风险的，在某些生命周期函数中调用可能会无用甚至出现循环调用导致崩溃。</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">React</span> from <span class="symbol">'reac</span>t'</span><br><span class="line"><span class="keyword">import</span> <span class="type">ReactDOM</span> from <span class="symbol">'react</span>-dom';</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubCounter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    componentWillReceiveProps() &#123;</span><br><span class="line">        console.log(<span class="symbol">'9</span>、子组件将要接收到新属性');</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    shouldComponentUpdate(newProps, newState) &#123;</span><br><span class="line">        console.log(<span class="symbol">'10</span>、子组件是否需要更新');</span><br><span class="line">        <span class="keyword">if</span> (newProps.number &lt; <span class="number">5</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillUpdate() &#123;</span><br><span class="line">        console.log(<span class="symbol">'11</span>、子组件将要更新');</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentDidUpdate() &#123;</span><br><span class="line">        console.log(<span class="symbol">'13</span>、子组件更新完成');</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillUnmount() &#123;</span><br><span class="line">        console.log(<span class="symbol">'14</span>、子组件将卸载');</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        console.log(<span class="symbol">'12</span>、子组件挂载中');</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">                &lt;p&gt;&#123;<span class="keyword">this</span>.props.number&#125;&lt;/p&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Counter</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    static defaultProps = &#123;</span><br><span class="line">        <span class="comment">//1、加载默认属性</span></span><br><span class="line">        name: <span class="symbol">'sl</span>s',</span><br><span class="line">        age:<span class="number">23</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    constructor() &#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="comment">//2、加载默认状态</span></span><br><span class="line">        <span class="keyword">this</span>.state = &#123;number: <span class="number">0</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillMount() &#123;</span><br><span class="line">        console.log(<span class="symbol">'3</span>、父组件挂载之前');</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">        console.log(<span class="symbol">'5</span>、父组件挂载完成');</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    shouldComponentUpdate(newProps, newState) &#123;</span><br><span class="line">        console.log(<span class="symbol">'6</span>、父组件是否需要更新');</span><br><span class="line">        <span class="keyword">if</span> (newState.number&lt;<span class="number">15</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillUpdate() &#123;</span><br><span class="line">        console.log(<span class="symbol">'7</span>、父组件将要更新');</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentDidUpdate() &#123;</span><br><span class="line">        console.log(<span class="symbol">'8</span>、父组件更新完成');</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleClick = () =&gt; &#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">            number: <span class="keyword">this</span>.state.number + <span class="number">1</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        console.log(<span class="symbol">'4</span>、render(父组件挂载)');</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;p&gt;&#123;<span class="keyword">this</span>.state.number&#125;&lt;/p&gt;</span><br><span class="line">                &lt;button onClick=&#123;<span class="keyword">this</span>.handleClick&#125;&gt;+&lt;/button&gt;</span><br><span class="line">                &#123;<span class="keyword">this</span>.state.number&lt;<span class="number">10</span>?&lt;<span class="type">SubCounter</span> number=&#123;<span class="keyword">this</span>.state.number&#125;/&gt;:<span class="literal">null</span>&#125;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">ReactDOM</span>.render(&lt;<span class="type">Counter</span>/&gt;, document.getElementById(<span class="symbol">'roo</span>t'));</span><br></pre></td></tr></table></figure>
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/09/13/计算广告/" data-toggle="tooltip" data-placement="top" title="《计算广告》">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "kikyouc";
+    var disqus_identifier = "http://yoursite.com/2018/09/27/react生命周期/";
+    var disqus_url = "http://yoursite.com/2018/09/27/react生命周期/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/chen-tian-92-4">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/cc-tian">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kikyouc&#39;s Blog 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

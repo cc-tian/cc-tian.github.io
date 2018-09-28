@@ -13,11 +13,11 @@
 
     <title>
         
-          hexo博客的搭建 - Kikyouc的博客 | Kikyouc&#39;s Blog
+          狼人杀 - Kikyouc的博客 | Kikyouc&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2015/11/18/hexo博客的搭建/">
+    <link rel="canonical" href="http://yoursite.com/2017/06/29/游戏/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -148,7 +148,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('hexo-bg.jpg')
+        background-image: url('/img/home-bg-kikyou.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -158,14 +158,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                          <a class="tag" href="/tags/#游戏" title="游戏">游戏</a>
                         
                     </div>
-                    <h1>hexo博客的搭建</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>狼人杀</h1>
+                    <h2 class="subheading">睡不着~写个游戏总结吧</h2>
                     <span class="meta">
                         Posted by cc-tian on
-                        2015-11-18
+                        2017-06-29
                     </span>
                 </div>
             </div>
@@ -184,66 +184,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><blockquote>
-<p>为什么技术员要写博客?</p>
-</blockquote>
-<p>首先，为自己，强化知识，提升学习能力，提升语言组织能力，提升逻辑思维能力；其次就是为他人，我们平时开发项目的时候会遇到问题，就会去百度，然后看别人博客就轻而易举的解决了问题，而且还会搜索很多技术博客去学习其中的思想和技术，促进自己的进步，所以我们不单单只是去获取，可以为他人提供自己的经验和学习经历，或许别人碰到的问题看了你的博客后也能够轻易的解决。<br>虽然hexo不是世界上最流行的博客平台，但是由于hexo基于node的博客框架，还可以实现基于git的博客，拥有免费的服务器空间。相比workpress来说更轻更快，更适合node开发程序员。把博客从wordpress迁移到github，还要学Ruby和Jekyll。而且迁移过程过于复杂，所以hexo正在慢慢流行。</p>
-<hr>
-<h2 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h2><blockquote>
-<p>用 hexo 构建一个初始项目</p>
-</blockquote>
-<ol>
-<li>先用全局安装: npm install hexo–g</li>
-<li>初始化一个工程: hexo init [工程名]</li>
-<li>安装hexo-server包: npm install</li>
-<li>生成一篇新的博客:hexo new [文章名]</li>
-<li>修改主题,将主题下载到themes目录下:git clone [仓库https协议地址]</li>
-<li>修改_config.yml配置文件下的theme属性值， 默认为theme: landscape<br>将其值修改为刚刚下载的主题名即可，然后就可以开启服务器预览了。</li>
-<li>生成静态文件并监视文件变动: hexo g -w</li>
-<li>启动hexo服务器进行本地预览: hexo s</li>
-<li>打开浏览器: <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></li>
-</ol>
-<h2 id="github配置"><a href="#github配置" class="headerlink" title="github配置"></a>github配置</h2><p><strong>1. 注册git账号</strong></p>
-<p><strong>2. 创建仓库</strong></p>
-<blockquote>
-<p>创建仓库的时候仓库名最好是 [用户名].github.io 的命名格式</p>
-</blockquote>
-<p><strong>3. 本地git环境配置</strong></p>
-<blockquote>
-<p>绑定git账号： git  config –global  user.name “用户名”<br>绑定git邮箱： git  config –global  user.email “邮箱”</p>
-</blockquote>
-<p><strong>4. 克隆仓库到本地</strong></p>
-<blockquote>
-<p>git  clone  [仓库的URL]</p>
-</blockquote>
-<p><strong>5. 创建ssh密钥</strong></p>
-<blockquote>
-<p>ssh-keygen -t rsa –C  [注册邮箱]</p>
-</blockquote>
-<p>SSH 公钥默认储存在账户的主目录下的 ~/.ssh 目录</p>
-<blockquote>
-<p>$ cd ~/.ssh<br>$ ls<br>id_dsa &nbsp; id_dsa.pub &nbsp; known_hosts</p>
-</blockquote>
-<p>打开生成的xx.pub文件，复制内容，找到git用户的settings选项，选择SSH key，Add ssh key,保存OK!</p>
-<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>将项目复制到刚克隆到本地的git仓库<br>修改 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener"><code>_config.yml</code></a> 文件下的部署配置：</p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">type:</span> git</span><br><span class="line"><span class="symbol">repository:</span> [SSH协议地址]</span><br><span class="line"><span class="symbol">branch:</span> master</span><br></pre></td></tr></table></figure>
-<p><strong>静态化工程</strong></p>
-<blockquote>
-<p>hexo generate</p>
-</blockquote>
-<p>注意：命令必须在工程根目录下执行，否则将找不到node_modules,无法加载相应模块<br>通过静态化命令，将工程转化成网页静态文件，即js,html文件</p>
-<p><strong>下载hexo-deployer-git模块</strong></p>
-<blockquote>
-<p>npm install hexo-deployer-git –save</p>
-</blockquote>
-<p><strong>部署到git仓库</strong></p>
-<blockquote>
-<p>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</p>
-</blockquote>
-<p>部署完后我们可以在仓库settings里看到GitHub Pages一栏下看到：<br>Your site is published at <a href="http://xxx.github.io" target="_blank" rel="noopener">http://xxx.github.io</a><br>这么一句话，后面的url地址就是git默认给你生成的一个访问网址，通过这个url就可以在浏览器访问你的站点了。<br>但是通过这个链接访问的项目加载不到样式，所以我们还需要绑定域名。</p>
-<blockquote>
-<p>最后在gh-pages分支下的项目根目录添加一个文件CNAME,里面填写你的域名。</p>
-</blockquote>
+                <p>1.一定要心平气和地盘逻辑，踩你的不一定就是狼，总有愚民看不清局势。</p>
+<p>2.狼人杀游戏中存在多种可能，一定要全面分析。</p>
+<p>3.铁狼死前踩的人中，总有好人和他的狼同伴。</p>
+<p>4.一定要在发言前就整理好自己的思路，这样发言时一气呵成。</p>
+<p>5.不要轻言放弃，玩狼的时候即便铁预言家说要验你并且第二天平安夜，也要坚持演到预言家亲口查杀你的一刻。</p>
+<p>6.玩狼打倒勾时一定不要倒勾过头，如果决定要把自己的队友出掉，一定要给出坚定的说辞证明你与他不共边。</p>
+<p>7.拿一些非逻辑行为强怼某个玩家的，狼面很大。</p>
+<p>8.如果所有人都在拿同一个点踩一个人是狼，那这个人不一定真是狼。</p>
+<p>9.当你因为某个人的发言不好去踩他的时候，一定要聊清自己身份并且说出依据，很多时候发言不好的会是猎人和女巫，把他们推出去就很尴尬了。</p>
+<p>10.玩预言家一定要说清自己的验人和警徽流，防止狼自爆无法发言，场上有人悍跳预言家时，可以号召大家把警徽给会带队的神。</p>
 
 
                 <hr>
@@ -253,9 +203,13 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2015/12/01/Node-note1/" data-toggle="tooltip" data-placement="top" title="Node-notes1">&larr; Previous Post</a>
+                            <a href="/2017/08/20/前端需要注意哪些SEO/" data-toggle="tooltip" data-placement="top" title="前端需要注意哪些SEO">&larr; Previous Post</a>
                         </li>
                     
+                    
+                        <li class="next">
+                            <a href="/2017/06/27/阿尔山/" data-toggle="tooltip" data-placement="top" title="阿尔山-蒙古边境">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -272,20 +226,6 @@
             </div>
     <!-- Side Catalog Container -->
         
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
-        
 
     <!-- Sidebar Container -->
 
@@ -301,7 +241,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                          <a class="tag" href="/tags/#游戏" title="游戏">游戏</a>
                         
                     </div>
                 </section>
@@ -322,8 +262,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "kikyouc";
-    var disqus_identifier = "http://yoursite.com/2015/11/18/hexo博客的搭建/";
-    var disqus_url = "http://yoursite.com/2015/11/18/hexo博客的搭建/";
+    var disqus_identifier = "http://yoursite.com/2017/06/29/游戏/";
+    var disqus_url = "http://yoursite.com/2017/06/29/游戏/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -502,50 +442,6 @@
 
 
 <!-- Side Catalog -->
-
-<script type="text/javascript">
-    function generateCatalog (selector) {
-        var P = $('div.post-container'),a,n,t,l,i,c;
-        a = P.find('h1,h2,h3,h4,h5,h6');
-        a.each(function () {
-            n = $(this).prop('tagName').toLowerCase();
-            i = "#"+$(this).prop('id');
-            t = $(this).text();
-            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
-            l = $('<li class="'+n+'_nav"></li>').append(c);
-            $(selector).append(l);
-        });
-        return true;    
-    }
-
-    generateCatalog(".catalog-body");
-
-    // toggle side catalog
-    $(".catalog-toggle").click((function(e){
-        e.preventDefault();
-        $('.side-catalog').toggleClass("fold")
-    }))
-
-    /*
-     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
-     * Fork by Hux to support padding
-     */
-    async("/js/jquery.nav.js", function () {
-        $('.catalog-body').onePageNav({
-            currentClass: "active",
-            changeHash: !1,
-            easing: "swing",
-            filter: "",
-            scrollSpeed: 700,
-            scrollOffset: 0,
-            scrollThreshold: .2,
-            begin: null,
-            end: null,
-            scrollChange: null,
-            padding: 80
-        });
-    });
-</script>
 
 
 

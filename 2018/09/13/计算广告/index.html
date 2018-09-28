@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          《计算广告》 - Kikyouc的博客 | Kikyouc&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2018/09/13/计算广告/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kikyouc&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-kikyou.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#广告" title="广告">广告</a>
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                    <h1>《计算广告》</h1>
+                    <h2 class="subheading">互联网商业变现的市场与技术</h2>
+                    <span class="meta">
+                        Posted by cc-tian on
+                        2018-09-13
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="一：在线广告综述"><a href="#一：在线广告综述" class="headerlink" title="一：在线广告综述"></a>一：在线广告综述</h2><h4 id="在线广告定义"><a href="#在线广告定义" class="headerlink" title="在线广告定义"></a>在线广告定义</h4><blockquote>
+<p>广告是 出资人 通过各种 媒介 进行的有关产品的信息传播活动。”</p>
+</blockquote>
+<p>主动参与方：出资人（sponsor）和媒体（medium），即需求方（demand）和供给方（supply）<br>被动参与方：受众（audience）</p>
+<blockquote>
+<p>广告必须是有偿的、非人员的信息传播活动</p>
+</blockquote>
+<p>前者使得广告的目标变得明确，后者使得这一目标可以采用计算的方式来优化</p>
+<p><strong>品牌广告</strong>（brand awareness）：希望借助媒体的力量来快速接触大量用户，以达到宣传品牌形象、提升中长期购买率与利润空间的目的</p>
+<p><strong>直接效果广告</strong>（direct response）：希望能利用广告手段马上带来大量的购买或其他转化行为</p>
+<h4 id="在线广告优势"><a href="#在线广告优势" class="headerlink" title="在线广告优势"></a>在线广告优势</h4><p>可以<strong>低成本</strong>地投送个性化广告<br>搜索等在线服务能更清楚<strong>了解用户意图</strong></p>
+<p>互联网广告兼有品牌和效果两方面的功能<br>网络广告相对传统广告的效果更多地是<strong>增量叠加</strong>而非替代</p>
+<h4 id="在线广告表现形式"><a href="#在线广告表现形式" class="headerlink" title="在线广告表现形式"></a>在线广告表现形式</h4><p>（1）横幅广告（banner ad）<br>占据固定的版面<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1536840773004&amp;di=92f3fbbec3c1c6012f2dc709f8344322&amp;imgtype=0&amp;src=http%3A%2F%2Fpic1.16pic.com%2F00%2F06%2F23%2F16pic_623247_b.jpg" alt="横幅广告"></p>
+<p>（2）文字链广告（textual ad）<br>占据固定的版面，有时也可以穿插在大量内容链接条目中<br><img src="./text-ad.png" alt="文字链广告"></p>
+<p>（3）富媒体广告（rich media ad）。<br>不占用固定版面，侵入式地投送广告<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1536841110290&amp;di=46e54a5c3d0de794a50e07836651762a&amp;imgtype=0&amp;src=http%3A%2F%2Fs9.rr.itc.cn%2Fr%2FwapChange%2F20165_13_13%2Fa9ulnj52083053537596.png" alt="富媒体广告"></p>
+<p>（4）视频广告（video ad）<br>效果评价中，除了计算与横幅广告一样的点击率，还可以采用用户观看时长等更接近于用户印象的指标<br><img src="./video-ad.png" alt="视频广告"></p>
+<p>（5）社交广告（social ad）<br>力求在用户自然关注的交互过程中尽可能自然地插入广告</p>
+<p>（6）移动广告（mobile ad）</p>
+<p>（7）邮件定向营销广告（E-mail Direct Marketing，EDM）<br><img src="./mail-ad.png" alt="邮件广告"></p>
+<p>原生广告：它是一种营销理念，将内容与广告以某种方式统一决策或排序的广告产品</p>
+<h4 id="泛广告商业产品"><a href="#泛广告商业产品" class="headerlink" title="泛广告商业产品"></a>泛广告商业产品</h4><p>（1）团购<br>（2）游戏联运<br>（3）固定位导航<br>（4）返利购买</p>
+<h2 id="二：计算广告基础"><a href="#二：计算广告基础" class="headerlink" title="二：计算广告基础"></a>二：计算广告基础</h2><p>千次展示期望收入 eCPM（expected Cost Per Mille）正是计算广告中最为核心的量化指标之一。<br>与广告的信息传达过程相关，eCPM又可以分解为点击率和点击价值的乘积</p>
+<p>在线广告合适的效果优化方案:<br>（1）技术和计算导向。在线广告进行受众定向可以精细且低成本，广告效果精确的预估和优化能力非常重要，技术使得广告决策和交易朝着计算驱动的方向发展。<br>（2）效果的可衡量性。在不同的产品或时代中，点击率绝对值的比较并没有那么重要，而在一个特定时期不同广告和算法表现出来的差异才是更有意义的.<br>（3）创意和投放方式的标准化。需求方关心的是人群而非广告位，创意尺寸的统一化与一些关键接口的标准化非常关键。<br>（4）媒体概念的多样化。拿搜索网站和返利网来说，后者更接近购买行为，可以获得更高的ROI，但潜在用户的获取量就会更少。我们在从需求方看在线广告时，应该注重各种性质媒体的配合关系，并从整合营销的角度去审视和优化整体的效果。<br>（5）数据驱动的投放决策。广泛收集用户的行为数据和广告反馈数据，利用云计算的基础设施对用户打上合适的标签，同样根据数据在多个广告竞争同一次展示时作出决策，再将投放的结果统计数据反馈给广告操作人员以调整投放策略，这已经成为在线广告的基本投放逻辑。因此可以认为，现代的在线广告系统就是一个大数据处理平台，而且其对数据处理的规模和响应速度的要求都相当高。</p>
+<h4 id="计算广告的核心问题"><a href="#计算广告的核心问题" class="headerlink" title="计算广告的核心问题"></a>计算广告的核心问题</h4><blockquote>
+<p>计算广告的核心问题，是为一系列用户与环境的组合找到最合适的广告投放策略以优化整体广告活动的利润。</p>
+</blockquote>
+<p>把上述问题转换为数学表达式：<img style="display: inline" src="./2.1.png"><br> i : 从第 1 次到第 T 次之间的某一次广告展示<br>我们优化的目标就是在这 T 次展示上的总收入( r )与总成本( q )的差，即广告活动的利润。<br>当某次广告活动的预算一定，即 <img style="display: inline" src="./2.1.1.png">是一个常数时<br>很容易验证优化公式 2.1 与优化另一个广告中更常见的目标投入产出比，<br>即 ROI= <img style="display: inline" src="./2.1.2.png">也是一致的<br>进一步考虑收入与成本具体依赖的因素，上面的优化问题可以写成：<br><img style="display: inline" src="./2.2.png"> （2.2）<br>表达式中的a、u、c三个变量，分别代表广告、用户与环境，即广告活动的三个参与主体。<br>在具体的广告产品中，优化公式2.2可能会省略掉一些内容或参数，或者增加一些约束条件，构成该广告产品独特的优化问题。</p>
+<h4 id="广告收入分解"><a href="#广告收入分解" class="headerlink" title="广告收入分解"></a>广告收入分解</h4><p>对收入( r )进行分解：<img style="display: inline" src="./2.3.png">（2.3）<br> µ : 点击率，用户在媒体页面的广告位产生的<strong>点击</strong>与广告<strong>展现</strong>的比率<br> ν : 点击价值（click value），即单次点击为广告产品带来的收益<br> eCPM : 某次或若干次展示的期望 CPM值</p>
+<h2 id="三：在线广告产品设计逻辑"><a href="#三：在线广告产品设计逻辑" class="headerlink" title="三：在线广告产品设计逻辑"></a>三：在线广告产品设计逻辑</h2><h2 id="四：合约广告"><a href="#四：合约广告" class="headerlink" title="四：合约广告"></a>四：合约广告</h2><h4 id="广告位合约-售卖的是广告位"><a href="#广告位合约-售卖的是广告位" class="headerlink" title="广告位合约(售卖的是广告位)"></a>广告位合约(售卖的是广告位)</h4><p>它是指媒体和广告主约定在某一时间段内，在某些广告位上固定投放该广告主的广告，相应的结算方式为 <strong>CPT</strong>。<br>它对供给方和需求方的技术的要求都不高。</p>
+<h4 id="展示量合约-售卖的是广告位-人群"><a href="#展示量合约-售卖的是广告位-人群" class="headerlink" title="展示量合约(售卖的是广告位+人群)"></a>展示量合约(售卖的是广告位+人群)</h4><p>它指的是约定某种受众条件下的展示量，然后按照事先约定好的单位展示量价格来结算，结算方式是 <strong>CPM</strong>。<br>这种方式也叫担保式投放(GD)，其中的“担保”指的就是量的约定。实际执行中，在未能完成合约中的投放量时，可能要求媒体承担一定的赔偿。</p>
+<p>受众定向方法有：人口属性定向、频道定向、上下文定向等</p>
+<h4 id="流量预测-traffic-forecasting"><a href="#流量预测-traffic-forecasting" class="headerlink" title="流量预测(traffic forecasting)"></a>流量预测(traffic forecasting)</h4><p>简单来说就是预测某个标签的人群访问某个站点的量，主要用途有：</p>
+<p>1）售前指导：指的是在展示<strong>合约</strong>广告系统中，由于要约定曝光总数，事先尽可能准确地预测个人群标签的流量非常重要。如果流量严重低估，会出现资源售卖量不足的情形；如果严重高估，则会出现一部分合约不能达成的状况。</p>
+<p>2）在线流量分配：指的是在展示量<strong>合约</strong>广告系统中，由于合约之间在人群的选择上会有很多的交集，因此一次的曝光往往会满足多个合约的要求，这时候就需要在多个合约之间进行分配，目的是达到整体满足所有合约的目的。</p>
+<p>3）出价指导：指的是在<strong>竞价</strong>广告中，没有了量的保证，广告主往往需要根据自己预计的出价先了解一下可能获得多少流量，以判断自己的出价是否合理。比前面在合约广告中的应用多了出价这一因素。</p>
+<p>综上，广告里一般的流量预测问题，可以描述为对流量 t ( u , b )  这个函数的估计，其中 u 是给定的人群标签或这些标签的组合，而 b 是具体的出价。在展示量合约中，由于没有竞价，可以看成是 b→∞ 的特例。</p>
+<h4 id="流量塑形（traffic-shaping）"><a href="#流量塑形（traffic-shaping）" class="headerlink" title="流量塑形（traffic shaping）"></a>流量塑形（traffic shaping）</h4><p>我们可以主动地影响流量，以利于合约的达成。这一产品策略问题称为流量塑形。<br>比如在车展期间，汽车频道上的展示广告需求旺盛，那么首页上的链接应该更多地给汽车频道导流以利于收入的增加。</p>
+<h4 id="在线分配"><a href="#在线分配" class="headerlink" title="在线分配"></a>在线分配</h4><blockquote>
+<p>问题：各个合约要求的人群很可能大量交叠，如何设计分配策略，使得各个合约都尽可能被满足</p>
+</blockquote>
+<p>需求节点之间可能会抢夺同一个供给节点的流量。在实际情况中，我们不可能等到流量情况全部已知后再做分配决策，而是需要在每一次曝光时实时做出分配决策，因此，这一策略问题称为在线分配。</p>
+<p>在线分配需要根据历史数据和某种策略离线得到一个分配方案，线上则照此方案执行。<br>而实际情况会在受标签数量的多少，节点流量的大小等因素影响，此时该分配方案就变得不可行。<br>因此人群标签非常丰富和精准的情况下，展示量合约这类广告并不能有效运作，此时就需要竞价广告产品。</p>
+<h2 id="五：搜索竞价广告"><a href="#五：搜索竞价广告" class="headerlink" title="五：搜索竞价广告"></a>五：搜索竞价广告</h2><h2 id="六：广告变现"><a href="#六：广告变现" class="headerlink" title="六：广告变现"></a>六：广告变现</h2><h2 id="七：原生广告"><a href="#七：原生广告" class="headerlink" title="七：原生广告"></a>七：原生广告</h2><h4 id="原生广告相关产品："><a href="#原生广告相关产品：" class="headerlink" title="原生广告相关产品："></a>原生广告相关产品：</h4><ol>
+<li>信息流广告</li>
+<li>搜索广告</li>
+<li>软文广告 : 高质量的软文宣传效果也很好，但很难标准化</li>
+<li>联盟</li>
+</ol>
+<h4 id="移动广告带来的机会："><a href="#移动广告带来的机会：" class="headerlink" title="移动广告带来的机会："></a>移动广告带来的机会：</h4><ol>
+<li>情境广告的可能性。移动设备了解用户的的情景，因此受众定向完全有可能做到从情境和意图出发，而不仅是根据兴趣</li>
+<li>大量潜在的本地化广告主。WIFI、GPS等精确定位的手段可以帮助本地小商家做推广</li>
+</ol>
+<h4 id="移动广告的创意形式"><a href="#移动广告的创意形式" class="headerlink" title="移动广告的创意形式"></a>移动广告的创意形式</h4><ol>
+<li>横幅与插屏 (以竞价方式售卖为主)</li>
+<li>开屏与锁屏 (以合约方式为主)</li>
+<li>推荐墙与积分墙(应用下载需求)</li>
+</ol>
+<h4 id="移动广告的挑战"><a href="#移动广告的挑战" class="headerlink" title="移动广告的挑战"></a>移动广告的挑战</h4><ol>
+<li>应用生态造成的行为数据割裂 (以应用为主的生态体系)</li>
+<li>许多PC时代广告主移动化业务进程缓慢 （移动页与PC展示和交互模式的巨大差别）</li>
+<li>移动广告的产品形态需要一次革命 (原生广告的目的就是要解决广告与内容对立的现象)</li>
+</ol>
+<blockquote>
+<p>原生广告通过“和谐”的内容呈现品牌信息，不破坏用户的体验，为用户提供有价值的信息。让用户自然地接受信息。</p>
+</blockquote>
+<h4 id="如何原生"><a href="#如何原生" class="headerlink" title="如何原生"></a>如何原生</h4><ol>
+<li>将广告的展示风格和样式变得与内容相一致，从而做到产品形式上的“原生”</li>
+<li>将广告的投放决策逻辑与内容生产相一致，从而做到用户意图上的“原生”</li>
+</ol>
+<p>原生的产品原则就是用媒体提供的广告需求来筛选广告。</p>
+<h2 id="八：在线广告产品实践"><a href="#八：在线广告产品实践" class="headerlink" title="八：在线广告产品实践"></a>八：在线广告产品实践</h2><h2 id="九：计算广告技术概览"><a href="#九：计算广告技术概览" class="headerlink" title="九：计算广告技术概览"></a>九：计算广告技术概览</h2><h2 id="十：产品技术算法知识储备"><a href="#十：产品技术算法知识储备" class="headerlink" title="十：产品技术算法知识储备"></a>十：产品技术算法知识储备</h2><h2 id="十一：合约广告核心技术"><a href="#十一：合约广告核心技术" class="headerlink" title="十一：合约广告核心技术"></a>十一：合约广告核心技术</h2><h2 id="十二：受众定向核心技术"><a href="#十二：受众定向核心技术" class="headerlink" title="十二：受众定向核心技术"></a>十二：受众定向核心技术</h2><h2 id="十三：竞价广告核心技术"><a href="#十三：竞价广告核心技术" class="headerlink" title="十三：竞价广告核心技术"></a>十三：竞价广告核心技术</h2><h2 id="十四：变现核心技术"><a href="#十四：变现核心技术" class="headerlink" title="十四：变现核心技术"></a>十四：变现核心技术</h2><h2 id="十五：其他广告相关技术"><a href="#十五：其他广告相关技术" class="headerlink" title="十五：其他广告相关技术"></a>十五：其他广告相关技术</h2>
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/09/27/react生命周期/" data-toggle="tooltip" data-placement="top" title="react生命周期">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/09/09/webstorm常用快捷键/" data-toggle="tooltip" data-placement="top" title="webstorm常用快捷键">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#广告" title="广告">广告</a>
+                        
+                          <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "kikyouc";
+    var disqus_identifier = "http://yoursite.com/2018/09/13/计算广告/";
+    var disqus_url = "http://yoursite.com/2018/09/13/计算广告/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/chen-tian-92-4">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/cc-tian">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kikyouc&#39;s Blog 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

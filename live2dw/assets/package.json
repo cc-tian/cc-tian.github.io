@@ -1,16 +1,16 @@
 {
-  "_from": "live2d-widget-model-tororo",
-  "_id": "live2d-widget-model-tororo@1.0.5",
+  "_from": "live2d-widget-model-shizuku",
+  "_id": "live2d-widget-model-shizuku@1.0.5",
   "_inBundle": false,
-  "_integrity": "sha1-9VbK/4JBmP9B0S987IB+EwHrydE=",
-  "_location": "/live2d-widget-model-tororo",
+  "_integrity": "sha1-E28mlpCyBzj6Dptn4zqmQwB1Eqg=",
+  "_location": "/live2d-widget-model-shizuku",
   "_phantomChildren": {},
   "_requested": {
     "type": "tag",
     "registry": true,
-    "raw": "live2d-widget-model-tororo",
-    "name": "live2d-widget-model-tororo",
-    "escapedName": "live2d-widget-model-tororo",
+    "raw": "live2d-widget-model-shizuku",
+    "name": "live2d-widget-model-shizuku",
+    "escapedName": "live2d-widget-model-shizuku",
     "rawSpec": "",
     "saveSpec": null,
     "fetchSpec": "latest"
@@ -19,19 +19,19 @@
     "#USER",
     "/"
   ],
-  "_resolved": "http://registry.npm.baidu-int.com/live2d-widget-model-tororo/-/live2d-widget-model-tororo-1.0.5.tgz",
-  "_shasum": "f556caff824198ff41d12f7cec807e1301ebc9d1",
-  "_spec": "live2d-widget-model-tororo",
+  "_resolved": "http://registry.npm.baidu-int.com/live2d-widget-model-shizuku/-/live2d-widget-model-shizuku-1.0.5.tgz",
+  "_shasum": "136f269690b20738fa0e9b67e33aa643007512a8",
+  "_spec": "live2d-widget-model-shizuku",
   "_where": "/Users/baidu/workspace/每周前端学习/cc-tian.github.io",
   "bugs": {
     "url": "https://github.com/xiazeyu/live2d-widget-models/issues"
   },
   "bundleDependencies": false,
   "deprecated": false,
-  "description": "tororo live2d model for live2d-widget.js",
+  "description": "shizuku live2d model for live2d-widget.js",
   "homepage": "https://github.com/xiazeyu/live2d-widget-models#readme",
   "license": "GPL-2.0",
-  "name": "live2d-widget-model-tororo",
+  "name": "live2d-widget-model-shizuku",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xiazeyu/live2d-widget-models.git"

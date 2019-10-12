@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          vue-notes1 - Kikyouc的博客 | Kikyouc&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2017/12/13/vue学习笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kikyouc&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-kikyou.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                        
+                          <a class="tag" href="/tags/#前端框架" title="前端框架">前端框架</a>
+                        
+                    </div>
+                    <h1>vue-notes1</h1>
+                    <h2 class="subheading">vue学习笔记整理</h2>
+                    <span class="meta">
+                        Posted by cc-tian on
+                        2017-12-13
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="基本指令"><a href="#基本指令" class="headerlink" title="基本指令"></a>基本指令</h2><p><code>v-text</code>：更新元素的 textContent<br><code>v-html</code>：更新元素的 innerHTML<br><code>v-bind</code>：将表达式的值响应式地作用于 DOM<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--解析为纯文本，不能输出真正的html，在页面加载时显示&#123;&#123;&#125;&#125; --&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span> <span class="comment">&lt;!-- 输出：&lt;span&gt;通过双括号绑定&lt;/span&gt; --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--解析为纯文本，不能输出真正的html，与花括号的区别是在页面加载时不显示&#123;&#123;&#125;&#125; --&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">p</span> <span class="attr">v-text</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span> <span class="comment">&lt;!-- 输出：&lt;span&gt;html标签在渲染的时候被源码输出&lt;/span&gt; --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--输出真正的html--&gt;</span></span><br><span class="line">　　<span class="tag">&lt;<span class="name">p</span> <span class="attr">v-html</span>=<span class="string">"html"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span> <span class="comment">&lt;!-- 输出：html标签在渲染的时候被解析 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">"url"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span>  <span class="comment">&lt;!--简写：:href="url"--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">"[&#123;active: true&#125;, errorClass]"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> <span class="comment">&lt;!-- 输出：&lt;div class="active none"&gt;&lt;/div&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"&#123; color: activeColor, fontSize: fontSize + 'px' &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 创建 Vue 的实例对象</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="comment">// el 用来指定vue挂载到页面中的元素，值是：选择器</span></span></span><br><span class="line"><span class="actionscript">        <span class="comment">// 理解：用来指定vue管理的HTML区域</span></span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="comment">// 数据对象，用来给视图中提供数据的</span></span></span><br><span class="line"><span class="undefined">        data: &#123;</span></span><br><span class="line"><span class="handlebars"><span class="xml">            msg: "<span class="tag">&lt;<span class="name">span</span>&gt;</span>通过双括号绑定<span class="tag">&lt;/<span class="name">span</span>&gt;</span>",</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">            text: "<span class="tag">&lt;<span class="name">span</span>&gt;</span>html标签在渲染的时候被源码输出<span class="tag">&lt;/<span class="name">span</span>&gt;</span>",</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">            html: "<span class="tag">&lt;<span class="name">span</span>&gt;</span>html标签在渲染的时候被解析<span class="tag">&lt;/<span class="name">span</span>&gt;</span>",</span></span></span><br><span class="line"><span class="actionscript">            url: <span class="string">'http://www.baidu.com'</span>,</span></span><br><span class="line"><span class="actionscript">            errorClass: <span class="string">'none'</span></span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    &#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><code>v-on</code>：事件监听器<br>语法：v-on:click=”say” or v-on:click=”say(‘参数’, $event)”<br>简写：@click=”say”<br>事件修饰符</p>
+<ul>
+<li><code>.stop</code> 阻止冒泡，调用 event.stopPropagation()</li>
+<li><code>.prevent</code> 阻止默认事件，调用 event.preventDefault()</li>
+<li><code>.capture</code> 添加事件侦听器时使用事件捕获模式</li>
+<li><code>.self</code> 只当事件在该元素本身（比如不是子元素）触发时触发回调</li>
+<li><code>.once</code> 事件只触发一次</li>
+</ul>
+<p><code>v-model</code>：实现表单输入和应用状态之间的双向绑定<br>支持修饰符：.number, .trim, .lazy（转变为在change事件中同步） </p>
+<p><code>v-for</code>：渲染一个项目列表<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 1 基础用法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span>&gt;</span></span><br><span class="line">  &#123;&#123; item.text &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- item 为当前项，index 为索引 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in list"</span>&gt;</span>&#123;&#123;item&#125;&#125; -- &#123;&#123;index&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- item 为值，key 为键，index 为索引 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">"(item, key, index) in obj"</span>&gt;</span>&#123;&#123;item&#125;&#125; -- &#123;&#123;key&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">"item in 10"</span>&gt;</span>&#123;&#123;item&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 2 提升性能用法：key属性  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"item in items"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--使用 key，VUE会基于 key 的变化重新排列元素顺序，并且会移除 key 不存在的元素--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><code>v-if</code> 与 <code>v-show</code>：条件渲染</p>
+<ul>
+<li>实现方式<br>v-if 是根据后面数据的真假值判断直接从Dom树上删除或重建元素节点;<br>v-show 只是在修改元素的css样式，也就是display的属性值，元素始终在Dom树上;</li>
+<li>编译方式<br>v-if 切换有一个局部编译/卸载的过程，切换过程中合适地销毁和重建内部的事件监听和子组件;<br>v-show 只是简单的基于css切换;</li>
+<li>编译条件<br>v-if 是惰性的，如果初始条件为假，则什么也不做；只有在条件第一次变为真时才开始局部编译；<br>v-show 是在任何条件下（首次条件是否为真）都被编译，然后被缓存，而且DOM元素始终被保留； </li>
+<li>性能消耗<br>v-if 有更高的切换消耗，不适合做频繁的切换；<br>v-show 有更高的初始渲染消耗，适合做频繁的额切换；</li>
+</ul>
+<p><code>v-cloak</code>：提升用户体验<br>说明：该指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--防止刷新页面，网速慢的情况下出现&#123;&#123; message &#125;&#125;等数据格式--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-cloak</span>&gt;</span></span><br><span class="line">  &#123;&#123; message &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><code>v-pre</code>：提升性能<br>说明：跳过这个元素和它的子元素的编译过程。可以用来显示原始 Mustache 标签。跳过大量没有指令的节点会加快编译。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-pre</span>&gt;</span>&#123;&#123; this will not be compiled &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><code>v-once</code>：提升性能<br>说明：只渲染元素和组件一次。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-once</span>&gt;</span>This will never change: &#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="实例的属性和方法"><a href="#实例的属性和方法" class="headerlink" title="实例的属性和方法"></a>实例的属性和方法</h2><p>vue设计思想符合mvc思想，el:’#app’代表View，data: {}代表数据Model，而methods代表控制器Controller，可以修改Model的值。<br>在实例化Vue时，需要传入一个选项对象，它可以包含数据data、模板template、挂载元素el、方法methods、生命周期钩子等选项。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> app = <span class="keyword">new</span> Vue(</span><br><span class="line">&#123;</span><br><span class="line">    el: <span class="string">'#app'</span>, </span><br><span class="line">    data() &#123; </span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            name: <span class="string">'vue'</span>,</span><br><span class="line">            count: <span class="number">0</span> </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="comment">// 箭头函数是不会绑定this的，会逐层向上找</span></span><br><span class="line">        <span class="comment">// 所以在在实例化Vue的选项时，大多不要使用箭头函数，因为我们期望this指向的是Vue实例。</span></span><br><span class="line">        increase: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.count++ </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://pic4.zhimg.com/v2-07f2d1453c235003b5179131ead6176f_r.jpg" alt="avatar"><br>常用的属性方法有：filter，computed，watch，methods</p>
+<p><img src="https://pic4.zhimg.com/v2-79b9631a411177445b1db5bcb76103a3_r.jpg" alt="avatar"><br><strong>十个全局API</strong><br>Vue.extend：使用基础Vue构造器，创建一个“子类”。参数是一个包含组件选项的对象<br>Vue.nextTick：在下次DOM更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的DOM<br>Vue.set：设置对象的属性。如果对象是响应式的，确保属性被创建后也是响应式的，同时触发视图更新。这个方法主要用于避开Vue不能检测属性被添加的限制<br>Vue.delete：删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开Vue不能检测到属性被删除的限制，但是你应该很少会使用它<br>Vue.directive：注册或获取全局指令<br>Vue.filter：注册或获取全局过滤器<br>Vue.component：注册或获取全局组件。注册还会自动使用给定的id设置组件的名称<br>Vue.use：安装Vue.js插件<br>Vue.mixin：全局注册一个混合，影响注册之后所有创建的每个Vue实例<br>Vue.compile：在render函数中编译模板字符串。只在独立构建时有效</p>
+<p><strong>六个全局配置选项</strong><br>Vue.config.silent = true： 取消Vue所有的日志与警告<br>Vue.config.optionMergeStrategies.methods：自定义合并策略的选项<br>Vue.config.devtools = true：配置是否允许vue-devtools检查代码<br>Vue.config.errorHandler = function(err, vm){}：指定组件的渲染和观察期间未捕获错误的处理函数<br>Vue.config.ignoredElements = [‘my-custom-web-component’,’another-web-component’]：忽略在Vue之外的自定义元素<br>Vue.config.keyCodes：给v-on自定义键位别名</p>
+<h2 id="Vue生命周期"><a href="#Vue生命周期" class="headerlink" title="Vue生命周期"></a>Vue生命周期</h2><h3 id="什么是"><a href="#什么是" class="headerlink" title="什么是"></a>什么是</h3><p>Vue 实例从创建到销毁的过程，就是生命周期。也就是从开始创建、初始化数据、编译模板、挂载DOM-渲染、更新-渲染、卸载等一系列的过程，我们称这是 Vue 的生命周期。</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>Vue 所有的功能的实现都是围绕其生命周期进行的，在生命周期的不同阶段调用对应的钩子函数可以实现组件数据管理和DOM渲染两大重要功能。 生命周期中有多个事件钩子，在控制整个vue实例的过程时更容易形成好的逻辑。</p>
+<h3 id="首次页面加载会触发哪几个钩子？"><a href="#首次页面加载会触发哪几个钩子？" class="headerlink" title="首次页面加载会触发哪几个钩子？"></a>首次页面加载会触发哪几个钩子？</h3><p>beforeCreate ， created ， beforeMount ，mounted 这几个钩子</p>
+<h3 id="简述每个周期具体适合哪些场景"><a href="#简述每个周期具体适合哪些场景" class="headerlink" title="简述每个周期具体适合哪些场景"></a>简述每个周期具体适合哪些场景</h3><p><code>beforeCreate</code>：创建前，此阶段为实例初始化之后，this指向创建的实例，此时的数据观察事件机制都未形成，不能获得DOM节点。<br>data，computed，watch，methods 上的方法和数据均不能访问。<br>可以在这加个loading事件。<br><code>created</code>：创建后，此阶段为实例已经创建，完成数据（data、props、computed）的初始化导入依赖项。<br>可访问 data computed watch methods 上的方法和数据。<br>初始化完成时的事件写在这里，异步请求也适宜在这里调用（请求不宜过多，避免白屏时间太长）。<br>可以在这里结束loading事件，还做一些初始化，实现函数自执行。<br>未挂载DOM，若在此阶段进行DOM操作一定要放在Vue.nextTick()的回调函数中。<br><code>beforeMount</code>：挂载前，虽然得不到具体的DOM元素，但vue挂载的根节点已经创建，下面vue对DOM的操作将围绕这个根元素继续进行。<br>这个阶段是过渡性的，一般一个项目只能用到一两次。<br><code>mounted</code>：挂载，完成创建vm.$el，和双向绑定<br>完成挂载DOM和渲染，可在mounted钩子函数中对挂载的DOM进行操作。<br>可在这发起后端请求，拿回数据，配合路由钩子做一些事情。<br><code>beforeUpdate</code>：数据更新前，数据驱动DOM。<br>在数据更新后虽然没有立即更新数据，但是DOM中的数据会改变，这是vue双向数据绑定的作用。<br>可在更新前访问现有的DOM，如手动移出添加的事件监听器。<br><code>updated</code>：数据更新后，完成虚拟DOM的重新渲染和打补丁。<br>组件DOM已完成更新，可执行依赖的DOM操作。<br>注意：不要在此函数中操作数据（修改属性），会陷入死循环。<br><code>activated</code>：在使用vue-router时有时需要使用<keep-alive></keep-alive>来缓存组件状态，这个时候created钩子就不会被重复调用了。<br>如果我们的子组件需要在每次加载的时候进行某些操作，可以使用activated钩子触发。<br><code>deactivated</code>：<keep-alive></keep-alive>组件被移除时使用。<br><code>beforeDestroy</code>：销毁前，可做一些删除提示，如：您确定删除xx吗？<br><code>destroyed</code>：销毁后，当前组件已被删除，销毁监听事件，组件、事件、子实例也被销毁。<br>这时组件已经没有了，无法操作里面的任何东西了。</p>
+<h3 id="父子组件的生命周期"><a href="#父子组件的生命周期" class="headerlink" title="父子组件的生命周期"></a>父子组件的生命周期</h3><p>执行顺序：<br>父组件开始执行到beforeMount 然后开始子组件执行，最后是父组件mounted。<br>如果有兄弟组件，父组件开始执行到beforeMount，然后兄弟组件依次执行到beforeMount，然后按照顺序执行mounted，最后执行父组件的mounted。</p>
+<p>当子组件挂载完成后，父组件才会挂载。<br>当子组件完成挂在后，父组件会主动执行一次beforeUpdated/updated钩子函数（仅首次）<br>父子组件在data变化中是分别监控的，但是更新props中的数据是关联的。<br>销毁父组件时，先将子组件销毁后才会销毁父组件。<br>兄弟组件的初始化（mounted之前）是分开进行，挂载是从上到下依次进行<br>当没有数据关联时，兄弟组件之间的更新和销毁是互不关联的</p>
+<h2 id="组件通信传值"><a href="#组件通信传值" class="headerlink" title="组件通信传值"></a>组件通信传值</h2><p>父子通信：<br>父向子传递数据是通过 props，子向父是通过 events（$emit）；通过父链 / 子链也可以通信（$parent / $children）；ref 也可以访问组件实例；provide / inject API；$attrs/$listeners<br>兄弟通信：<br>Bus；Vuex<br>跨级通信：<br>Bus；Vuex；provide / inject API、$attrs/$listeners</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/09/03/广告名词/" data-toggle="tooltip" data-placement="top" title="广告名词">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/08/20/前端需要注意哪些SEO/" data-toggle="tooltip" data-placement="top" title="前端需要注意哪些SEO">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                        
+                          <a class="tag" href="/tags/#前端框架" title="前端框架">前端框架</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://kikyouc.github.io" target="_blank">Kikyouc&#39;s Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">CC&#39;s Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "kikyouc";
+    var disqus_identifier = "http://yoursite.com/2017/12/13/vue学习笔记/";
+    var disqus_url = "http://yoursite.com/2017/12/13/vue学习笔记/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/chen-tian-92-4">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/cc-tian">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kikyouc&#39;s Blog 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

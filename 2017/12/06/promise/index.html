@@ -13,11 +13,11 @@
 
     <title>
         
-          前端需要注意哪些SEO - Kikyouc的博客 | Kikyouc&#39;s Blog
+          Promise-notes1 - Kikyouc的博客 | Kikyouc&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2017/08/20/前端需要注意哪些SEO/">
+    <link rel="canonical" href="http://yoursite.com/2017/12/06/promise/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -160,12 +160,14 @@
                         
                           <a class="tag" href="/tags/#前端" title="前端">前端</a>
                         
+                          <a class="tag" href="/tags/#ES6" title="ES6">ES6</a>
+                        
                     </div>
-                    <h1>前端需要注意哪些SEO</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>Promise-notes1</h1>
+                    <h2 class="subheading">Promise学习笔记整理</h2>
                     <span class="meta">
                         Posted by cc-tian on
-                        2017-08-20
+                        2017-12-06
                     </span>
                 </div>
             </div>
@@ -184,35 +186,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <ul>
-<li><p>合理的title、description、keywords：搜索对着三项的权重逐个减小，title值强调重点即可，重要关键词出现不要超过2次，而且要靠前，不同页面title要有所不同；description把页面内容高度概括，长度合适，不可过分堆砌关键词，不同页面description有所不同；keywords列举出重要关键词即可</p>
-</li>
-<li><p>语义化的HTML代码，符合W3C规范：语义化代码让搜索引擎容易理解网页</p>
-</li>
-<li><p>重要内容HTML代码放在最前：搜索引擎抓取HTMl顺序是从上到下，有的搜索引擎对抓取长度有限制，保证重要内容一定会被抓取</p>
-</li>
-<li><p>重要内容不要用js输出：爬虫不会执行js获取内容</p>
-</li>
-<li><p>少用iframe：搜索引擎不会抓取iframe中的内容</p>
-</li>
-<li><p>非装饰性图片必须加alt</p>
-</li>
-<li><p>提高网站速度：网站速度是搜索引擎排序的一个重要指标</p>
-</li>
-</ul>
+                <h2 id="promise-all"><a href="#promise-all" class="headerlink" title="promise.all"></a>promise.all</h2><p>Promise.all 接收一个 promise 对象的数组作为参数，当这个数组里的所有 promise 对象全部变为resolve或 有 reject 状态出现的时候，它才会去调用 .then 方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p1 = <span class="built_in">Promise</span>.resolve(<span class="number">1</span>),</span><br><span class="line">    p2 = <span class="built_in">Promise</span>.reject(<span class="number">2</span>),</span><br><span class="line">    p3 = <span class="built_in">Promise</span>.resolve(<span class="number">3</span>);</span><br><span class="line"><span class="built_in">Promise</span>.all([p1, p2, p3]).then(<span class="function"><span class="keyword">function</span> (<span class="params">results</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// then方法不会被执行</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//catch方法将会被执行，输出结果为：2</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>总结 promise.all 的特点</p>
 <ol>
-<li><p><code>&lt;meta keywords&gt;</code> 和 <code>&lt;meta description&gt;</code> 标签</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="attribute">name</span>=<span class="string">"keywords"</span> <span class="attribute">content</span>=<span class="string">"百度地图"</span> /&gt;</span><br><span class="line">&lt;meta <span class="attribute">name</span>=<span class="string">"description"</span> <span class="attribute">content</span>=<span class="string">"用户还可以在此处针对产品进行交流。"</span> /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>body中标签语义化</p>
-</li>
+<li>接收一个 Promise 实例的数组或具有 Iterator 接口的对象</li>
+<li>如果元素不是 Promise 对象，则使用 Promise.resolve 转成 Promise 对象</li>
+<li>如果全部成功，状态变为 resolved，返回值将组成一个数组传给回调</li>
+<li>只要有一个失败，状态就变为 rejected，返回值将直接传递给回调all() 的返回值也是新的 Promise 对象</li>
 </ol>
-<ul>
-<li><code>&lt;a&gt;</code> 标签：页内链接要加 “title” 属性加以说明，外部链接要加上 <code>el=&quot;nofollow&quot;</code> 属性 正文标题要用</li>
-<li><code>&lt;h1&gt;</code> 标签(包含最重要的关键词),其它地方不应该随便乱用 h 标题标签</li>
-<li><code>&lt;img&gt;</code> 标签：应使用 “alt” 属性加以说明</li>
-<li><code>&lt;strong&gt;</code> 标签在搜索引擎中能够得到高度的重视，突出关键词,<code>&lt;em&gt;</code> 强调效果仅次于 <code>&lt;strong&gt;</code><br>对于不想显示的文字内容，谨慎使用 <code>display：none</code></li>
-</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseAll</span>(<span class="params">promises</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!isArray(promises)) &#123;</span><br><span class="line">      <span class="keyword">return</span> reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'arguments must be an array'</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> resolvedCounter = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> promiseNum = promises.length;</span><br><span class="line">    <span class="keyword">var</span> resolvedValues = <span class="keyword">new</span> <span class="built_in">Array</span>(promiseNum);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; promiseNum; i++) &#123;</span><br><span class="line">      (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">Promise</span>.resolve(promises[i]).then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">          resolvedCounter++</span><br><span class="line">          resolvedValues[i] = value</span><br><span class="line">          <span class="keyword">if</span> (resolvedCounter == promiseNum) &#123;</span><br><span class="line">            <span class="keyword">return</span> resolve(resolvedValues)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> reject(reason)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)(i)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考：<a href="https://github.com/YvetteLau/Step-By-Step/issues/25" target="_blank" rel="noopener">https://github.com/YvetteLau/Step-By-Step/issues/25</a></p>
 
 
                 <hr>
@@ -222,12 +205,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2017/12/06/promise/" data-toggle="tooltip" data-placement="top" title="Promise-notes1">&larr; Previous Post</a>
+                            <a href="/2017/12/13/vue学习笔记/" data-toggle="tooltip" data-placement="top" title="vue-notes1">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2017/06/29/游戏/" data-toggle="tooltip" data-placement="top" title="狼人杀">Next Post &rarr;</a>
+                            <a href="/2017/08/20/前端需要注意哪些SEO/" data-toggle="tooltip" data-placement="top" title="前端需要注意哪些SEO">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -245,6 +228,20 @@
             </div>
     <!-- Side Catalog Container -->
         
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
 
     <!-- Sidebar Container -->
 
@@ -261,6 +258,8 @@
                     <div class="tags">
                        
                           <a class="tag" href="/tags/#前端" title="前端">前端</a>
+                        
+                          <a class="tag" href="/tags/#ES6" title="ES6">ES6</a>
                         
                     </div>
                 </section>
@@ -292,8 +291,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "kikyouc";
-    var disqus_identifier = "http://yoursite.com/2017/08/20/前端需要注意哪些SEO/";
-    var disqus_url = "http://yoursite.com/2017/08/20/前端需要注意哪些SEO/";
+    var disqus_identifier = "http://yoursite.com/2017/12/06/promise/";
+    var disqus_url = "http://yoursite.com/2017/12/06/promise/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -469,6 +468,50 @@
 
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 

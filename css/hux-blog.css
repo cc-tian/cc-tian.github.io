@@ -49,6 +49,9 @@
 .sidebar-container .short-about .list-inline > li {
   padding-left: 0px;
 }
+.catalog-body {
+  padding-left: 0;
+}
 body {
   /* Hux learn from
      *     TypeIsBeautiful,

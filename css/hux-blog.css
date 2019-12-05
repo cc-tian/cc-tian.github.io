@@ -12,6 +12,7 @@
 .sidebar-container {
   color: #bfbfbf;
   font-size: 14px;
+  white-space: nowrap;
 }
 .sidebar-container h5 {
   color: #808080;

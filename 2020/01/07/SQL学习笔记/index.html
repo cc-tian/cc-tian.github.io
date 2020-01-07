@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          SQL学习笔记 - Kikyouc的博客 | Kikyouc&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2020/01/07/SQL学习笔记/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kikyouc&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About Me</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-kikyou.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#数据库" title="数据库">数据库</a>
+                        
+                    </div>
+                    <h1>SQL学习笔记</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by cc-tian on
+                        2020-01-07
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="一-基础概述："><a href="#一-基础概述：" class="headerlink" title="一.基础概述："></a>一.基础概述：</h2><p>一.增删改查（每个数据库可能语法有不同，关键字一样）：<br>1.增加：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 创建数据库</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> dbname;</span><br><span class="line">// 创建表</span><br><span class="line"><span class="keyword">USE</span> dbname;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons ( </span><br><span class="line">PId <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>, </span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>, </span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>), </span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>), </span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>)）</span><br><span class="line">// 创建视图</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">VIEW</span> ViewName <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> xxx,xxx</span><br><span class="line"><span class="keyword">FROM</span> TableName</span><br><span class="line"><span class="keyword">WHERE</span> xxx</span><br><span class="line">// 增加列</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tableName <span class="keyword">ADD</span> columnName <span class="built_in">varchar</span>(<span class="number">30</span>)</span><br></pre></td></tr></table></figure></p>
+<p>2.删除：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 删除数据库</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> DBName;</span><br><span class="line">// 删除表</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> TableName;</span><br><span class="line">// 删除视图</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> VName;</span><br><span class="line">// 删除列</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TableName <span class="keyword">DROP</span> <span class="keyword">column</span> columnName </span><br><span class="line">// 删除行</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> TableName <span class="keyword">WHERE</span> some_column=some_value; </span><br><span class="line">//删除表中数据</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">test</span> 或者 <span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">test</span>;</span><br><span class="line"><span class="keyword">DELETE</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> 或者 <span class="keyword">DELETE</span> * <span class="keyword">FROM</span> <span class="keyword">test</span>;</span><br></pre></td></tr></table></figure></p>
+<p>3.改：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 插入数据</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> TableName <span class="keyword">VALUES</span> (value1,value2,value3,...);</span><br><span class="line">// 更新行</span><br><span class="line"><span class="keyword">UPDATE</span> TableName <span class="keyword">SET</span> column1=value1,column2=value2,... <span class="keyword">WHERE</span> some_column=some_value;</span><br><span class="line">// 修改列类型</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> TableName <span class="keyword">ALTER</span> <span class="keyword">column</span> columnName <span class="built_in">varchar</span>(<span class="number">4000</span>)</span><br></pre></td></tr></table></figure></p>
+<p>4.查：<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 查询所有列</span><br><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> TableName</span><br><span class="line"><span class="keyword">WHERE</span> xxx</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="keyword">Number</span></span><br><span class="line">// 查询某一列</span><br><span class="line"><span class="keyword">SELECT</span> ColumnName</span><br><span class="line"><span class="keyword">FROM</span> TableName</span><br><span class="line"><span class="keyword">WHERE</span> xxx</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="keyword">Number</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="二-主键（primary-key）：一列-（或者一组列），其值能够唯一标识表中的每一行。"><a href="#二-主键（primary-key）：一列-（或者一组列），其值能够唯一标识表中的每一行。" class="headerlink" title="二.主键（primary key）：一列 （或者一组列），其值能够唯一标识表中的每一行。"></a>二.主键（primary key）：一列 （或者一组列），其值能够唯一标识表中的每一行。</h2><p>注：</p>
+<ol>
+<li>主键必须包含唯一的值。<br>2.主键列不能包含 NULL 值。<br>3.每个表都应该有一个主键，并且每个表只能有一个主键。<br>4.主键可以创建完毕后在添加（列必须是not null的，创建时就定义的）。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons <span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span> (P_Id)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>5.主键可以撤销。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> Persons <span class="keyword">DROP</span> PRIMARY <span class="keyword">KEY</span></span><br></pre></td></tr></table></figure></p>
+<p>eg（一列）：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// mysql</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons ( </span><br><span class="line">PId <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>, </span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>, </span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>), </span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>), </span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>), </span><br><span class="line">PRIMARY <span class="keyword">KEY</span> (PId) )</span><br><span class="line">//<span class="keyword">SQL</span> <span class="keyword">Server</span> / <span class="keyword">Oracle</span> / MS <span class="keyword">Access</span>：</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons(</span><br><span class="line">PId <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>))</span><br></pre></td></tr></table></figure></p>
+<p>eg(一组列)：<br>只有一个主键 PRIMARY KEY（PkPersonID）,而PkPersonID 的值是由两个列（PId 和 LastName）组成的。<br>PId列和LastName都可以出现重复，但是（PId+LastName）不可重复。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// MySQL / SQL Server / Oracle / MS Access：</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Persons(</span><br><span class="line">PId <span class="built_in">int</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">LastName <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">FirstName <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">Address <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line">City <span class="built_in">varchar</span>(<span class="number">255</span>),</span><br><span class="line"><span class="keyword">CONSTRAINT</span> PkPersonID PRIMARY <span class="keyword">KEY</span> (PId,LastName))</span><br></pre></td></tr></table></figure></p>
+<p>三.子查询<br>自己的理解：<br>如果把搜索出来的数据比作一张临时表，搜索结果来自于前一个临时表。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">count</span>(<span class="keyword">url</span>) <span class="keyword">AS</span> white_num,</span><br><span class="line">       <span class="keyword">count</span>(ef22),</span><br><span class="line">       <span class="keyword">count</span>(<span class="keyword">url</span>)*<span class="number">100</span>/<span class="keyword">count</span>(ef22)</span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> ef22</span><br><span class="line">    <span class="keyword">FROM</span> (</span><br><span class="line">        <span class="keyword">SELECT</span> search_id</span><br><span class="line">        <span class="keyword">FROM</span> fc_nad.nativeads_als_anti_log</span><br><span class="line">        <span class="keyword">WHERE</span> event_day =<span class="number">20180322</span></span><br><span class="line">                <span class="keyword">AND</span> cmatch_id = <span class="string">'545'</span></span><br><span class="line">                <span class="keyword">AND</span> da_type = <span class="number">2</span></span><br><span class="line">                <span class="keyword">AND</span> bid_type = <span class="number">3</span></span><br><span class="line">                <span class="keyword">AND</span> product_id = <span class="number">8</span></span><br><span class="line">                <span class="keyword">AND</span> os_type=<span class="number">2</span></span><br><span class="line">                <span class="keyword">AND</span> (array_contains(<span class="keyword">split</span>(eid_list, <span class="string">'#'</span>), <span class="string">'5000604'</span>)</span><br><span class="line">                <span class="keyword">OR</span> array_contains(<span class="keyword">split</span>(eid_list, <span class="string">'#'</span>), <span class="string">'5000605'</span>))</span><br><span class="line">                <span class="keyword">AND</span> mt_id <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="number">16511</span>, <span class="number">16512</span>, <span class="number">16513</span>)</span><br><span class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span>  search_id) x</span><br><span class="line">        <span class="keyword">INNER</span> <span class="keyword">JOIN</span> (</span><br><span class="line">            <span class="keyword">SELECT</span></span><br><span class="line">                <span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">length</span>(f7)=<span class="number">26</span> <span class="keyword">THEN</span> regexp_replace(f7,<span class="string">'random-'</span>,<span class="string">''</span>)</span><br><span class="line">                     <span class="keyword">WHEN</span> <span class="keyword">length</span>(f7)=<span class="number">25</span> <span class="keyword">THEN</span> regexp_replace(f7,<span class="string">'random'</span>,<span class="string">''</span>)</span><br><span class="line">                     <span class="keyword">WHEN</span> <span class="keyword">length</span>(f7)=<span class="number">16</span> <span class="keyword">THEN</span> <span class="keyword">conv</span>(f7, <span class="number">16</span>, <span class="number">10</span>)</span><br><span class="line">                     <span class="keyword">WHEN</span> <span class="keyword">length</span>(f7)=<span class="number">15</span> <span class="keyword">THEN</span> <span class="keyword">conv</span>(f7, <span class="number">16</span>, <span class="number">10</span>)</span><br><span class="line">                <span class="keyword">END</span> <span class="keyword">AS</span> search_id,</span><br><span class="line">                ef22</span><br><span class="line">            <span class="keyword">FROM</span> fc_nad.nativeads_als_every_log</span><br><span class="line">            <span class="keyword">WHERE</span> category_id = <span class="number">1006</span></span><br><span class="line">                    <span class="keyword">AND</span> f6=<span class="string">'545'</span></span><br><span class="line">                    <span class="keyword">AND</span> event_day =<span class="number">20180322</span></span><br><span class="line">                    <span class="keyword">AND</span> os_type=<span class="number">2</span></span><br><span class="line">            <span class="keyword">GROUP</span> <span class="keyword">BY</span> </span><br><span class="line">                <span class="keyword">CASE</span> <span class="keyword">WHEN</span> <span class="keyword">length</span>(f7)=<span class="number">26</span> <span class="keyword">THEN</span> regexp_replace(f7,<span class="string">'random-'</span>,<span class="string">''</span>)</span><br><span class="line">                     <span class="keyword">WHEN</span> <span class="keyword">length</span>(f7)=<span class="number">25</span> <span class="keyword">THEN</span> regexp_replace(f7,<span class="string">'random'</span>,<span class="string">''</span>)</span><br><span class="line">                     <span class="keyword">WHEN</span> <span class="keyword">length</span>(f7)=<span class="number">16</span> <span class="keyword">THEN</span> <span class="keyword">conv</span>(f7, <span class="number">16</span>, <span class="number">10</span>)</span><br><span class="line">                     <span class="keyword">WHEN</span> <span class="keyword">length</span>(f7)=<span class="number">15</span> <span class="keyword">THEN</span> <span class="keyword">conv</span>(f7, <span class="number">16</span>, <span class="number">10</span>) <span class="keyword">END</span>, </span><br><span class="line">                ef22) y</span><br><span class="line">            <span class="keyword">ON</span> x.search_id = y.search_id ) z</span><br><span class="line">  <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> basedata.white_1521782810000</span><br><span class="line">  <span class="keyword">ON</span> z.ef22=<span class="keyword">url</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="四-关于join"><a href="#四-关于join" class="headerlink" title="四.关于join"></a>四.关于join</h2><p><img src="https://images2017.cnblogs.com/blog/1035967/201709/1035967-20170907174926054-907920122.jpg" alt="SQL JOINS"><br>1.笛卡尔积：CROSS JOIN （n<em>m条）,将A表的每一条记录与B表的每一条记录强行拼在一起，A表有2行，B表有5行，那么就是2</em>5=10行。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tableA <span class="keyword">cross</span> <span class="keyword">join</span> tableB; //cross join</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://agroup-bos.cdn.bcebos.com/bcf5409e8197c6f423c006d6a7dcece1bc8be6c5" alt="SQL JOINS"><br>2.内连接：INNER JOIN,把A表和B表匹配的，选出来<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_blog <span class="keyword">inner</span> <span class="keyword">join</span> t_type <span class="keyword">ON</span> t_blog.typeId=t_type.id; //inner join</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://agroup-bos.cdn.bcebos.com/8bdfa1b0de9843d5ee9ff27668ee4405f1c46e21" alt="SQL JOINS"><br>3.左连接：LEFT JOIN，以左边的表为基准塞选。<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_blog <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> t_type <span class="keyword">ON</span> t_blog.typeId=t_type.id;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://agroup-bos.cdn.bcebos.com/4c3cec90a192c2843edafa582ccad709d3eeb3f4" alt="SQL JOINS"><br>4.右连接：RIGHT JOIN，以右边的表为基准塞选。<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_blog <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> t_type <span class="keyword">ON</span> t_blog.typeId=t_type.id;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://agroup-bos.cdn.bcebos.com/c6fce62cd1bd88e5700e57ce8ddbdb496e1d999f" alt="SQL JOINS"><br>5.外连接：OUTER JOIN，外连接就是求两个集合的并集。从笛卡尔积的角度讲就是从笛卡尔积中挑出ON子句条件成立的记录，然后加上左表中剩余的记录，最后加上右表中剩余的记录。另外MySQL不支持OUTER JOIN，但是我们可以对左连接和右连接的结果做UNION操作来实现。<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_blog <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> t_type <span class="keyword">ON</span> t_blog.typeId=t_type.id</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_blog <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> t_type <span class="keyword">ON</span> t_blog.typeId=t_type.id;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://agroup-bos.cdn.bcebos.com/8a01da555ee9c7d0e440b9532ba5503983bf3476" alt="SQL JOINS"></p>
+<h2 id="五-关于union"><a href="#五-关于union" class="headerlink" title="五.关于union"></a>五.关于union</h2><p>join就是选出的临时表填充列，union就是选出的临时表填充行。union中两张表选出的列名必须相同。<br>1.union,选出A表与B表的数据，A中有并且B也有的，选择先出现的那个。<br><img src="http://agroup-bos.cdn.bcebos.com/34cd3d3c396580cadc0b8f95c80572c496012bad" alt="SQL JOINS"><br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> E_Name <span class="keyword">from</span> Employees_China</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">select</span> E_Name <span class="keyword">from</span> Employees_USA</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://agroup-bos.cdn.bcebos.com/88a8b1d6b97ccc1b32b13945a142eacb5f7a7fd0" alt="SQL JOINS"><br>2.union all，选出A表与B表的所有数据<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> E_Name <span class="keyword">from</span> Employees_China</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">select</span> E_Name <span class="keyword">from</span> Employees_USA</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://agroup-bos.cdn.bcebos.com/4f07bbceef21409ea50139ecb39dc0391e4c5660" alt="SQL JOINS"></p>
+<p>##六.关于其他：<br>COUNT()/COUNT(1)与COUNT(column)区别，COUNT()/COUNT(1)不管value是不是NULL都统计，count(column)忽略NULL值。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/12/21/河南跨年/" data-toggle="tooltip" data-placement="top" title="河南跨年游">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#数据库" title="数据库">数据库</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://kikyouc.github.io" target="_blank">Kikyouc&#39;s Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">CC&#39;s Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "kikyouc";
+    var disqus_identifier = "http://yoursite.com/2020/01/07/SQL学习笔记/";
+    var disqus_url = "http://yoursite.com/2020/01/07/SQL学习笔记/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/chen-tian-92-4">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/cc-tian">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Kikyouc&#39;s Blog 2020 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

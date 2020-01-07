@@ -257,7 +257,7 @@
 </code></pre><p>其中cat目录定义了一个包，其中包含了3个子模块。main.js作为入口模块,其内容如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> head = <span class="built_in">require</span>(<span class="string">'./head'</span>);</span><br><span class="line"><span class="keyword">var</span> body = <span class="built_in">require</span>(<span class="string">'./body'</span>);</span><br><span class="line"></span><br><span class="line">exports.create = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name: name,</span><br><span class="line">        head: head.create(),</span><br><span class="line">        body: body.create()</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>在其它模块里使用包的时候，需要加载包的入口模块。接着上例，使用<code>require(&#39;/home/user/lib/cat/main&#39;)</code>能达到目的，但是入口模块名称出现在路径里看上去不是个好主意。因此我们需要做点额外的工作，让包使用起来更像是单个模块。</p>
 <p><em>index.js</em></p>
-<p>当模块的文件名是index.js，加载模块时可以使用模块所在目录的路径代替模块文件路径，因此接着上例，以下两条语句等价。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cat = <span class="built_in">require</span>(<span class="string">'/home/user/lib/cat'</span>);</span><br><span class="line"><span class="keyword">var</span> cat = <span class="built_in">require</span>(<span class="string">'/home/user/lib/cat/index'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>当模块的文件名是index.js，加载模块时可以使用模块所在目录的路径代替模块文件路径，因此接着上例，以下两条语句等价。<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">var cat</span> = require(<span class="string">'/home/user/lib/cat'</span>);</span><br><span class="line"><span class="attribute">var cat</span> = require(<span class="string">'/home/user/lib/cat/index'</span>);</span><br></pre></td></tr></table></figure></p>
 <p>这样处理后，就只需要把包目录路径传递给require函数，感觉上整个目录被当作单个模块使用，更有整体感。</p>
 <p><em>package.json</em></p>
 <p>如果想自定义入口模块的文件名和存放位置，就需要在包目录下包含一个package.json文件，并在其中指定入口模块的路径。上例中的cat模块可以重构如下。</p>
@@ -523,7 +523,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Kikyouc&#39;s Blog 2019 
+                    Copyright &copy; Kikyouc&#39;s Blog 2020 
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
